@@ -212,9 +212,7 @@ if 'user_profile' not in st.session_state:
 # 단계별 이름 정의
 STEP_NAMES = [
     "🏠 AI 소개",
-    "📋 프로세스", 
-    "🎯 시작하기",
-    "👥 투자상담매니저",
+    " 투자상담매니저",
     "📊 시장전략가", 
     "💰 자산배분전문가",
     "🔍 산업리서처",
@@ -254,7 +252,7 @@ def show_navigation():
                 st.rerun()
 
 # =============================================================================
-# 각 단계별 함수들
+# 각 단계별 함수들 (6단계로 단순화)
 # =============================================================================
 
 def step_ai_intro():
@@ -293,89 +291,15 @@ def step_ai_intro():
     
     st.markdown("---")
     
-    # 시작하기 버튼 (3단계로 이동)
+    # 시작하기 버튼 (1단계로 이동)
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
         if st.button("🎯 시작하기", use_container_width=True, type="primary"):
-            st.session_state.current_step = 3  # 투자상담매니저로 바로 이동
-            st.rerun()
-
-def step_process():
-    """2단계: 프로세스 소개"""
-    st.markdown('<div class="main-title">📋 AI 투자 프로세스</div>', unsafe_allow_html=True)
-    st.markdown('<div class="subtitle">체계적이고 과학적인 8단계 투자 프로세스</div>', unsafe_allow_html=True)
-    
-    st.markdown("---")
-    
-    # 프로세스 단계
-    processes = [
-        ("1", "투자성향 분석", "개인의 투자 성향과 목표 수익률, 리스크 허용도를 분석"),
-        ("2", "시장 환경 분석", "거시경제 지표와 시장 동향을 분석하여 투자 방향 설정"),
-        ("3", "자산 배분 전략", "리스크 관리를 위한 최적의 자산 배분 포트폴리오 구성"),
-        ("4", "섹터 선별 분석", "성장성과 안정성을 고려한 유망 산업 섹터 발굴"),
-        ("5", "종목 선정 분석", "기술적/기본적 분석을 통한 개별 종목 발굴 및 선정"),
-        ("6", "매매 타이밍", "모멘텀과 RSI 지표를 활용한 최적의 매수/매도 시점 포착"),
-        ("7", "포트폴리오 관리", "지속적인 성과 모니터링과 리밸런싱으로 수익 최적화")
-    ]
-    
-    # 모바일 최적화: 2열 배치 (마지막이 홀수면 1개)
-    for i in range(0, len(processes), 2):
-        cols = st.columns(2)
-        for j, col in enumerate(cols):
-            if i + j < len(processes):
-                num, title, desc = processes[i + j]
-                with col:
-                    st.markdown(f"""
-                    <div class="process-card">
-                        <div class="process-number">STEP {num}</div>
-                        <div class="process-title">{title}</div>
-                        <div class="process-desc">{desc}</div>
-                    </div>
-                    """, unsafe_allow_html=True)
-
-def step_start():
-    """3단계: 시작하기"""
-    st.markdown('<div class="main-title">🎯 투자 여정을 시작하세요</div>', unsafe_allow_html=True)
-    st.markdown('<div class="subtitle">AI 전문가들이 단계별로 안내해드립니다</div>', unsafe_allow_html=True)
-    
-    st.markdown("---")
-    
-    # 안내 메시지
-    st.markdown("""
-    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-                color: white; padding: 2rem; border-radius: 15px; text-align: center; margin: 2rem 0;">
-        <h2 style="color: white; margin-bottom: 1rem;">🚀 준비가 완료되었습니다!</h2>
-        <p style="font-size: 1.6rem; margin-bottom: 0;">
-            투자상담매니저가 귀하의 투자 성향을 분석하고<br>
-            맞춤형 투자전략을 제시해드립니다.
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    # 다음 단계 안내
-    st.markdown("### 📝 다음 단계에서는...")
-    
-    next_steps = [
-        "💼 투자 경험과 목표 수익률 확인",
-        "⚖️ 리스크 허용도와 투자 성향 분석", 
-        "📅 투자 기간과 목적 설정",
-        "🎨 선호하는 AI 투자 전략 스타일 선택"
-    ]
-    
-    for step in next_steps:
-        st.markdown(f"**{step}**")
-    
-    st.markdown("---")
-    
-    # 시작 버튼
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
-        if st.button("💬 투자상담 시작하기", use_container_width=True, type="primary"):
-            st.session_state.current_step = 3
+            st.session_state.current_step = 1  # 투자상담매니저로 바로 이동
             st.rerun()
 
 def step_consultant():
-    """4단계: 투자상담매니저"""
+    """투자상담매니저"""
     st.markdown('<div class="main-title">👥 투자상담매니저</div>', unsafe_allow_html=True)
     st.markdown('<div class="subtitle">맞춤형 투자 전략을 위한 상담</div>', unsafe_allow_html=True)
     
@@ -792,18 +716,14 @@ def main():
     if st.session_state.current_step == 0:
         step_ai_intro()
     elif st.session_state.current_step == 1:
-        step_process()
-    elif st.session_state.current_step == 2:
-        step_start()
-    elif st.session_state.current_step == 3:
         step_consultant()
-    elif st.session_state.current_step == 4:
+    elif st.session_state.current_step == 2:
         step_market_analyst()
-    elif st.session_state.current_step == 5:
+    elif st.session_state.current_step == 3:
         step_asset_allocator()
-    elif st.session_state.current_step == 6:
+    elif st.session_state.current_step == 4:
         step_sector_researcher()
-    elif st.session_state.current_step == 7:
+    elif st.session_state.current_step == 5:
         step_stock_analyzer()
     
     st.markdown("---")
