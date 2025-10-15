@@ -54,13 +54,7 @@ def main():
             margin: 0;
             font-size: 0.9rem;
             font-weight: 600;
-        ">🤖 딥시그널</h1>
-        <p style="
-            color: #7f8c8d;
-            margin: 2px 0 0 0;
-            font-size: 0.7rem;
-            font-weight: 400;
-        ">AI Investment Agency</p>
+        ">🤖 딥시그널 <span style="color: #7f8c8d; font-weight: 400;">(AI Investment Agency)</span></h1>
     </div>
     """, unsafe_allow_html=True)
     
