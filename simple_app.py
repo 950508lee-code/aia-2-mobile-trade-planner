@@ -61,23 +61,22 @@ def main():
     # 구분선 - 로고 바로 아래
     st.markdown("<hr style='margin: 5px 0 10px 0; border: 1px solid #e0e0e0;'>", unsafe_allow_html=True)
     
-    # 클릭 가능한 탭 메뉴
+    # 2줄로 배치된 탭 메뉴 (5+4 구성)
     tab_names = ["🎯 시작하기", "👥 투자상담매니저", "🎯 투자성향분석결과", "📊 시장전략가", "💰 자산배분전문가", "🔍 산업리서처", "📈 종목분석가", "🏆 포트폴리오전략가", "⚡매매전략가"]
     
-    # 탭 메뉴 스타일 - 모든 버튼 크기 강제 통일
+    # CSS 스타일
     st.markdown("""
     <style>
-    /* 모든 Streamlit 버튼에 동일한 크기 강제 적용 */
     .stButton > button {
         width: 100% !important;
-        height: 32px !important;
-        min-height: 32px !important;
-        max-height: 32px !important;
-        padding: 2px 6px !important;
-        margin: 2px 0 !important;
-        font-size: 8px !important;
+        height: 28px !important;
+        min-height: 28px !important;
+        max-height: 28px !important;
+        padding: 2px 4px !important;
+        margin: 1px 0 !important;
+        font-size: 9px !important;
         font-weight: 500 !important;
-        border-radius: 8px !important;
+        border-radius: 6px !important;
         border: 1px solid #ddd !important;
         background-color: #f8f9fa !important;
         color: #495057 !important;
@@ -86,50 +85,36 @@ def main():
         justify-content: center !important;
         text-align: center !important;
         line-height: 1.1 !important;
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
         box-sizing: border-box !important;
     }
     
-    /* Primary 버튼 (활성 탭) */
     .stButton > button[kind="primary"] {
         background-color: #007bff !important;
         color: white !important;
         border-color: #007bff !important;
-        font-weight: 600 !important;
-    }
-    
-    /* Secondary 버튼 */
-    .stButton > button[kind="secondary"] {
-        background-color: #f8f9fa !important;
-        color: #6c757d !important;
-        border-color: #ddd !important;
-    }
-    
-    /* 호버 효과 */
-    .stButton > button:hover {
-        background-color: #e9ecef !important;
-        border-color: #007bff !important;
-        transform: none !important;
-    }
-    
-    .stButton > button[kind="primary"]:hover {
-        background-color: #0056b3 !important;
-        border-color: #0056b3 !important;
     }
     </style>
     """, unsafe_allow_html=True)
     
-    # 탭 메뉴 버튼들
-    cols = st.columns(len(tab_names))
-    for i, tab_name in enumerate(tab_names):
-        with cols[i]:
-            # 현재 활성 탭 표시
+    # 첫 번째 줄 (5개)
+    cols1 = st.columns(5)
+    for i in range(5):
+        with cols1[i]:
             button_type = "primary" if i == st.session_state.current_step else "secondary"
-            if st.button(tab_name, key=f"tab_{i}", use_container_width=True, type=button_type):
+            if st.button(tab_names[i], key=f"tab_{i}", use_container_width=True, type=button_type):
                 st.session_state.current_step = i
                 st.rerun()
+    
+    # 두 번째 줄 (4개 + 빈 공간)
+    cols2 = st.columns(5)
+    for i in range(4):
+        tab_index = i + 5
+        with cols2[i]:
+            button_type = "primary" if tab_index == st.session_state.current_step else "secondary"
+            if st.button(tab_names[tab_index], key=f"tab_{tab_index}", use_container_width=True, type=button_type):
+                st.session_state.current_step = tab_index
+                st.rerun()
+    # 마지막 컬럼은 비워둠
     
     st.markdown("<br>", unsafe_allow_html=True)
     
