@@ -256,11 +256,11 @@ def tab_consultant():
     with col1:
         if st.button("📊 거시경제 분석 단계로", type="primary"):
             st.success("✅ 투자자 프로필이 설정되었습니다!")
-            st.info("🔄 거시전략가 탭에서 현재 경제 환경을 분석하고 투자 전략을 수립해보세요.")
+            st.info("� 위의 '📊 거시전략가' 탭을 클릭하여 경제 환경 분석을 시작해주세요!")
     
     with col2:
         if st.button("🔄 프로필 다시 설정"):
-            st.experimental_rerun()
+            st.rerun()
     
     # 상담 요약
     with st.expander("📋 투자 상담 요약", expanded=False):
@@ -291,53 +291,134 @@ def tab_intro():
     """인트로 탭"""
     st.header("🎯 딥시그널 — AI 투자 에이전시")
     
-    col1, col2 = st.columns(2)
+    # 메인 비전
+    st.markdown("""
+    <div style="text-align: center; padding: 20px; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); border-radius: 10px; color: white; margin: 20px 0;">
+        <h2>🤖 8명의 투자전문 AI와 함께하는 단계별 의사결정</h2>
+        <p style="font-size: 18px; margin: 10px 0;">각 분야 전문가 AI가 순차적으로 분석하여 최적의 투자 전략을 도출합니다</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("<br>", unsafe_allow_html=True)
+    
+    col1, col2 = st.columns([1.2, 0.8])
     
     with col1:
         st.markdown("""
-        ### 🚀 플랫폼 개요
+        ### 🎯 **왜 딥시그널인가?**
         
-        **딥시그널**은 AI 역할 기반 투자 의사결정 플랫폼으로, 
-        전문 투자팀의 역할을 AI가 수행하여 체계적인 투자 전략을 제공합니다.
+        **🧠 집단지성 의사결정**: 8명의 전문 AI가 각각의 전문 영역에서 분석하고 토론하여 편향을 제거합니다
         
-        ### 📋 8단계 투자 프로세스
+        **📊 데이터 기반 객관성**: 감정적 판단을 배제하고 순수 데이터와 알고리즘으로 투자 결정을 내립니다
         
-        1. **🎯 인트로**: 플랫폼 소개 및 개요
-        2. **👥 투자상담매니저**: 투자성향 분석 및 맞춤형 프로필 설정
-        3. **📊 거시전략가**: 경제 환경 분석 및 시장 전망
-        4. **💰 자산배분가**: 리스크 성향별 포트폴리오 구성
-        5. **🔍 섹터리서처**: 유망 섹터 및 테마 선별
-        6. **📈 종목애널리스트**: 개별 종목 분석 및 추천
-        7. **🏆 CIO전략실**: 최종 포트폴리오 확정
-        8. **⚡ Trade Planner**: 모멘텀+RSI 기반 매매 전략
+        **🎨 개인 맞춤형**: 투자자의 성향, 목표, 자금 규모를 반영한 완전 개인화된 포트폴리오를 제안합니다
+        
+        **⚡ 실시간 실행**: 분석부터 매매 타이밍까지 원스톱으로 실제 투자 실행을 지원합니다
         """)
     
     with col2:
         st.markdown("""
-        ### 💡 핵심 특징
+        ### 💼 **8명의 전문 AI팀**
         
-        ✅ **AI 역할 분담**: 각 단계별 전문 AI 에이전트  
-        ✅ **체계적 프로세스**: 거시→미시→실행 단계별 접근  
-        ✅ **실용적 전략**: 모멘텀+RSI 기반 단순 매매 신호  
-        ✅ **개인 맞춤형**: 리스크 성향 및 투자 목표 반영  
+        **👥 투자상담매니저**  
+        *투자자 성향 분석*
         
-        ### 🎯 모멘텀+RSI 전략
+        **📊 거시전략가**  
+        *글로벌 경제 분석*
         
-        복잡한 팩터모델 대신 **검증된 기술적 지표 조합**을 활용:
+        **💰 자산배분가**  
+        *포트폴리오 최적화*
         
-        - **RSI 지표 (50%)**: 과매수/과매도 구간 판별
-        - **단기 모멘텀 (30%)**: 20일 이동평균 기준 
-        - **장기 모멘텀 (20%)**: 60일 이동평균 기준
+        **🔍 섹터리서처**  
+        *산업별 투자기회 발굴*
         
-        **🟢 매수 신호**: RSI 30-40 + 모멘텀 상승  
-        **🔴 매도 신호**: RSI 70+ + 모멘텀 둔화
+        **📈 종목애널리스트**  
+        *개별 종목 심층분석*
+        
+        **🏆 CIO전략실**  
+        *최종 전략 확정*
+        
+        **⚡ 트레이드플래너**  
+        *매매 타이밍 최적화*
         """)
     
-    # 시작하기 버튼
-    st.markdown("---")
-    if st.button("🚀 투자 여정 시작하기", type="primary"):
-        st.success("✅ 투자상담매니저 탭으로 이동하여 맞춤형 투자 상담을 시작해보세요!")
-        st.info("💡 투자상담매니저가 귀하의 투자성향과 목표를 파악하여 최적의 전략을 제안해드립니다.")
+    st.markdown("<br>", unsafe_allow_html=True)
+    
+    # 프로세스 플로우
+    st.markdown("### 🔄 **투자 의사결정 프로세스**")
+    
+    process_steps = [
+        ("👥", "투자 프로필링", "성향·목표·자금 분석"),
+        ("📊", "거시환경 진단", "경제 시나리오 설정"),
+        ("💰", "자산배분 설계", "리스크 최적화"),
+        ("🔍", "섹터 발굴", "성장동력 분석"),
+        ("📈", "종목 선별", "개별 기업 분석"),
+        ("🏆", "전략 확정", "포트폴리오 완성"),
+        ("⚡", "실행 계획", "매매 타이밍 설정")
+    ]
+    
+    cols = st.columns(7)
+    for i, (icon, title, desc) in enumerate(process_steps):
+        with cols[i]:
+            st.markdown(f"""
+            <div style="text-align: center; padding: 10px; border: 2px solid #f0f2f6; border-radius: 10px; height: 120px; display: flex; flex-direction: column; justify-content: center;">
+                <div style="font-size: 24px;">{icon}</div>
+                <div style="font-weight: bold; font-size: 12px; margin: 5px 0;">{title}</div>
+                <div style="font-size: 10px; color: #666;">{desc}</div>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        if i < len(process_steps) - 1:
+            st.markdown("<div style='text-align: center; margin: 10px 0;'>→</div>", unsafe_allow_html=True)
+    
+    st.markdown("<br><br>", unsafe_allow_html=True)
+    
+    # 핵심 특징
+    st.markdown("### ✨ **핵심 경쟁력**")
+    
+    features = [
+        ("🎯", "정밀 타겟팅", "투자자별 맞춤형 전략", "#4CAF50"),
+        ("🔬", "과학적 분석", "AI 기반 객관적 판단", "#2196F3"), 
+        ("⚡", "즉시 실행", "분석부터 매매까지 원스톱", "#FF9800"),
+        ("📱", "언제 어디서", "모바일 접근 24/7 가능", "#9C27B0")
+    ]
+    
+    cols = st.columns(4)
+    for i, (icon, title, desc, color) in enumerate(features):
+        with cols[i]:
+            st.markdown(f"""
+            <div style="text-align: center; padding: 20px; background: {color}15; border-left: 4px solid {color}; border-radius: 5px;">
+                <div style="font-size: 30px; margin-bottom: 10px;">{icon}</div>
+                <div style="font-weight: bold; color: {color}; margin-bottom: 5px;">{title}</div>
+                <div style="font-size: 14px; color: #666;">{desc}</div>
+            </div>
+            """, unsafe_allow_html=True)
+    
+    st.markdown("<br><br>", unsafe_allow_html=True)
+    
+    # 시작하기 버튼 (중앙 정렬, 더 임팩트 있게)
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        st.markdown("""
+        <div style="text-align: center; padding: 20px;">
+            <h3 style="color: #667eea; margin-bottom: 15px;">🚀 당신만의 투자 전략을 찾아보세요</h3>
+            <p style="color: #666; margin-bottom: 20px;">8명의 AI 전문가가 단계별로 최적의 투자 솔루션을 제안합니다</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        if st.button("🎯 AI 투자 여정 시작하기", type="primary", use_container_width=True):
+            st.success("✅ 투자상담매니저와의 상담이 시작됩니다!")
+            st.info("👆 위의 '👥 투자상담매니저' 탭을 클릭하여 투자 프로필 설정을 시작해주세요!")
+            st.markdown("""
+            <script>
+            setTimeout(function() {
+                var tabs = parent.document.querySelectorAll('[data-testid="stTabs"] button');
+                if (tabs.length > 1) {
+                    tabs[1].click();
+                }
+            }, 1000);
+            </script>
+            """, unsafe_allow_html=True)
 
 def tab_macro():
     """거시전략가 탭"""
