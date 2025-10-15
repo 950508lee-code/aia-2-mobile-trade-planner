@@ -72,9 +72,23 @@ def main():
     # 2줄로 배치된 탭 메뉴 (시작하기 제외, 4+4 구성)
     tab_names = ["👥 투자상담매니저", "🎯 투자성향분석결과", "📊 시장전략가", "💰 자산배분전문가", "🔍 산업리서처", "📈 종목분석가", "🏆 포트폴리오전략가", "⚡매매전략가"]
     
-    # CSS 스타일
+    # CSS 스타일 - 모바일 최적화
     st.markdown("""
     <style>
+    /* 모바일 반응형 스타일 */
+    @media (max-width: 768px) {
+        .stButton > button {
+            font-size: 8px !important;
+            height: 32px !important;
+            min-height: 32px !important;
+            max-height: 32px !important;
+            padding: 2px 3px !important;
+        }
+        .stColumns {
+            gap: 2px !important;
+        }
+    }
+    
     .stButton > button {
         width: 100% !important;
         height: 28px !important;
@@ -94,6 +108,9 @@ def main():
         text-align: center !important;
         line-height: 1.1 !important;
         box-sizing: border-box !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
     }
     
     .stButton > button[kind="primary"] {
@@ -102,14 +119,21 @@ def main():
         border-color: #007bff !important;
     }
     
-    /* 컬럼 간격 제거 */
+    /* 컬럼 간격 최소화 */
     .stColumns {
         gap: 3px !important;
+    }
+    
+    /* 컨테이너 최적화 */
+    .block-container {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
     }
     </style>
     """, unsafe_allow_html=True)
     
-    # 첫 번째 줄 (4개)
+    # 첫 번째 줄 (4개) - 모바일 최적화
+    st.markdown('<div style="margin-bottom: 3px;">', unsafe_allow_html=True)
     cols1 = st.columns(4)
     for i in range(4):
         with cols1[i]:
@@ -119,8 +143,10 @@ def main():
             if st.button(tab_names[i], key=f"tab_{tab_index}", use_container_width=True, type=button_type):
                 st.session_state.current_step = tab_index
                 st.rerun()
+    st.markdown('</div>', unsafe_allow_html=True)
     
-    # 두 번째 줄 (4개)
+    # 두 번째 줄 (4개) - 모바일 최적화
+    st.markdown('<div style="margin-bottom: 10px;">', unsafe_allow_html=True)
     cols2 = st.columns(4)
     for i in range(4):
         # 실제 탭 인덱스는 i+5 (시작하기=0 제외)
@@ -130,6 +156,7 @@ def main():
             if st.button(tab_names[i+4], key=f"tab_{tab_index}", use_container_width=True, type=button_type):
                 st.session_state.current_step = tab_index
                 st.rerun()
+    st.markdown('</div>', unsafe_allow_html=True)
     
     st.markdown("<br>", unsafe_allow_html=True)
     
