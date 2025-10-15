@@ -88,61 +88,85 @@ def main():
         min-width: 0 !important;
     }
     
-    /* 강력한 반응형 디자인 - 모든 창 크기에서 일관성 보장 */
+    /* 모바일 특화 강력한 반응형 디자인 - 전체 UI 모바일 우선 */
     
-    /* 전체 레이아웃 고정 */
+    /* 전체 레이아웃 모바일 최적화 */
     .main .block-container {
         max-width: 100% !important;
-        padding: 10px !important;
+        padding: 8px !important;
         margin: 0 !important;
     }
     
-    /* 전역 반응형 텍스트 크기 */
+    /* 모바일 우선 전역 텍스트 크기 */
     html {
-        font-size: clamp(12px, 2.5vw, 16px) !important;
+        font-size: 14px !important;
     }
     
     .stMarkdown h1 {
-        font-size: clamp(1.2rem, 4vw, 2rem) !important;
+        font-size: 1.4rem !important;
+        line-height: 1.3 !important;
+        margin: 8px 0 !important;
     }
     
     .stMarkdown h2 {
-        font-size: clamp(1rem, 3.5vw, 1.75rem) !important;
+        font-size: 1.2rem !important;
+        line-height: 1.3 !important;
+        margin: 6px 0 !important;
     }
     
     .stMarkdown h3 {
-        font-size: clamp(0.9rem, 3vw, 1.5rem) !important;
+        font-size: 1.1rem !important;
+        line-height: 1.3 !important;
+        margin: 5px 0 !important;
     }
     
     .stMarkdown p {
-        font-size: clamp(0.8rem, 2.5vw, 1rem) !important;
+        font-size: 0.9rem !important;
+        line-height: 1.4 !important;
+        margin: 4px 0 !important;
     }
     
-    /* 탭 버튼 완전 고정 가로 배치 */
+    /* 모든 텍스트 요소 모바일 최적화 */
+    .stText, .stCaption, .stMarkdown div {
+        font-size: 0.85rem !important;
+        line-height: 1.4 !important;
+    }
+    
+    /* 메트릭과 수치 표시 모바일 최적화 */
+    .metric-value {
+        font-size: 1.1rem !important;
+    }
+    
+    .metric-label {
+        font-size: 0.8rem !important;
+    }
+    
+    /* 탭 버튼 모바일 특화 */
     .stTabs [data-baseweb="tab-list"] {
         display: flex !important;
         flex-direction: row !important;
         flex-wrap: nowrap !important;
-        gap: 2px !important;
+        gap: 1px !important;
         overflow-x: auto !important;
         justify-content: space-between !important;
         width: 100% !important;
-        min-height: 35px !important;
+        min-height: 30px !important;
         background: #f8f9fa !important;
         padding: 2px !important;
-        border-radius: 8px !important;
+        border-radius: 6px !important;
+        margin-bottom: 10px !important;
     }
     
     .stTabs [data-baseweb="tab"] {
         flex: 1 1 auto !important;
-        min-width: 85px !important;
-        max-width: 120px !important;
-        height: 30px !important;
-        padding: 0 4px !important;
+        min-width: 70px !important;
+        max-width: 100px !important;
+        height: 26px !important;
+        padding: 0 3px !important;
         margin: 1px !important;
-        font-size: 8px !important;
+        font-size: 7px !important;
         font-weight: 600 !important;
-        border-radius: 6px !important;
+        border-radius: 4px !important;
         border: 1px solid #ddd !important;
         background-color: white !important;
         color: #495057 !important;
@@ -161,79 +185,53 @@ def main():
         color: white !important;
         border-color: #007bff !important;
         font-weight: 700 !important;
+        font-size: 7px !important;
     }
     
-    /* 모든 Streamlit columns 강제 가로 배치 */
+    /* 모든 Streamlit columns 모바일 최적화 */
     .stColumns {
         display: flex !important;
         flex-direction: row !important;
         flex-wrap: nowrap !important;
-        gap: 5px !important;
+        gap: 3px !important;
         width: 100% !important;
         overflow-x: auto !important;
     }
     
     .stColumns > div {
         flex: 1 !important;
-        min-width: 80px !important;
-        padding: 2px !important;
+        min-width: 60px !important;
+        padding: 1px !important;
         box-sizing: border-box !important;
     }
     
-    /* 창 크기별 세밀한 조정 */
-    @media (max-width: 1200px) {
+    /* 큰 화면에서만 조금 더 크게 */
+    @media (min-width: 769px) {
         .stTabs [data-baseweb="tab"] {
-            min-width: 75px !important;
-            font-size: 7px !important;
+            min-width: 85px !important;
+            height: 30px !important;
+            font-size: 8px !important;
         }
-    }
-    
-    @media (max-width: 900px) {
-        .stTabs [data-baseweb="tab"] {
-            min-width: 70px !important;
-            font-size: 7px !important;
-            height: 28px !important;
+        .stTabs [data-baseweb="tab"][aria-selected="true"] {
+            font-size: 8px !important;
         }
         .stColumns > div {
-            min-width: 70px !important;
+            min-width: 80px !important;
+            padding: 2px !important;
         }
     }
     
-    @media (max-width: 600px) {
-        .stTabs [data-baseweb="tab"] {
-            min-width: 65px !important;
-            font-size: 6px !important;
-            height: 26px !important;
-            padding: 0 2px !important;
-        }
-        .stColumns > div {
-            min-width: 60px !important;
-            padding: 1px !important;
-        }
-    }
-    
-    @media (max-width: 480px) {
-        .stTabs [data-baseweb="tab"] {
-            min-width: 55px !important;
-            font-size: 6px !important;
-            height: 24px !important;
-        }
-        .main .block-container {
-            padding: 5px !important;
-        }
-    }
-    
-    /* 모든 버튼 강력한 반응형 통일 스타일 */
+    /* 모든 버튼 모바일 특화 스타일 */
     .stButton > button {
         width: 100% !important;
-        height: 36px !important;
-        min-height: 36px !important;
-        max-height: 36px !important;
-        padding: 4px 8px !important;
+        height: 32px !important;
+        min-height: 32px !important;
+        max-height: 32px !important;
+        padding: 2px 6px !important;
         margin: 2px 0 !important;
-        font-size: 10px !important;
+        font-size: 8px !important;
         font-weight: 600 !important;
-        border-radius: 8px !important;
+        border-radius: 6px !important;
         border: 1px solid #ddd !important;
         background-color: #f8f9fa !important;
         color: #495057 !important;
@@ -254,6 +252,7 @@ def main():
         color: white !important;
         border-color: #007bff !important;
         font-weight: 700 !important;
+        font-size: 8px !important;
     }
     
     .stButton > button:hover {
@@ -266,60 +265,95 @@ def main():
         border-color: #0056b3 !important;
     }
     
-    /* 반응형 버튼 크기 조정 */
-    @media (max-width: 1200px) {
+    /* 큰 화면에서만 조금 더 크게 */
+    @media (min-width: 769px) {
         .stButton > button {
-            height: 34px !important;
+            height: 36px !important;
             font-size: 9px !important;
-            padding: 3px 6px !important;
+            padding: 3px 8px !important;
+        }
+        .stButton > button[kind="primary"] {
+            font-size: 9px !important;
         }
     }
     
-    @media (max-width: 900px) {
-        .stButton > button {
-            height: 32px !important;
-            font-size: 8px !important;
-            padding: 2px 4px !important;
-        }
-    }
-    
-    @media (max-width: 600px) {
-        .stButton > button {
-            height: 30px !important;
-            font-size: 8px !important;
-            padding: 2px 3px !important;
-        }
-    }
-    
-    @media (max-width: 480px) {
-        .stButton > button {
-            height: 28px !important;
-            font-size: 7px !important;
-            padding: 1px 2px !important;
-        }
-    }
-    
-    /* 로고 스타일 개선 */
+    /* 로고와 헤더 모바일 특화 */
     .logo-text {
-        font-size: 0.9rem !important;
+        font-size: 0.8rem !important;
         font-weight: 600 !important;
         color: #2c3e50 !important;
         margin: 0 !important;
-        padding: 3px 0 !important;
+        padding: 2px 0 !important;
     }
     
-    /* 구분선 스타일 */
+    /* 구분선 모바일 특화 */
     hr {
-        margin: 8px 0 !important;
+        margin: 6px 0 !important;
         border: 0.5px solid #e0e0e0 !important;
     }
     
-    /* 헤더 텍스트 최적화 */
+    /* 헤더 텍스트 모바일 특화 */
     .header-text {
-        font-size: 1rem !important;
+        font-size: 0.9rem !important;
         line-height: 1.3 !important;
         margin: 0 !important;
-        padding: 8px 0 !important;
+        padding: 6px 0 !important;
+    }
+    
+    /* 모든 입력 요소 모바일 특화 */
+    .stSelectbox > div > div {
+        font-size: 0.8rem !important;
+        min-height: 30px !important;
+    }
+    
+    .stSlider > div > div {
+        font-size: 0.8rem !important;
+    }
+    
+    .stRadio > div {
+        font-size: 0.8rem !important;
+    }
+    
+    .stCheckbox > label {
+        font-size: 0.8rem !important;
+    }
+    
+    /* 메트릭 표시 모바일 특화 */
+    .stMetric {
+        background: #f8f9fa !important;
+        padding: 8px !important;
+        border-radius: 6px !important;
+        margin: 2px 0 !important;
+    }
+    
+    .stMetric > div {
+        font-size: 0.7rem !important;
+    }
+    
+    .stMetric > div > div {
+        font-size: 1rem !important;
+        font-weight: 600 !important;
+    }
+    
+    /* 큰 화면에서만 조금 더 크게 */
+    @media (min-width: 769px) {
+        .logo-text {
+            font-size: 0.9rem !important;
+        }
+        .header-text {
+            font-size: 1rem !important;
+            padding: 8px 0 !important;
+        }
+        .stSelectbox > div > div {
+            font-size: 0.9rem !important;
+            min-height: 36px !important;
+        }
+        .stSlider > div > div, .stRadio > div, .stCheckbox > label {
+            font-size: 0.9rem !important;
+        }
+        .stMetric > div {
+            font-size: 0.8rem !important;
+        }
     }
             min-height: 32px !important;
             max-height: 32px !important;
@@ -611,11 +645,11 @@ def tab_profile_analysis():
 def tab_intro():
     """인트로 탭"""
     
-    # 메인 비전
+    # 메인 비전 - 모바일 특화
     st.markdown("""
-    <div style="text-align: center; padding: 20px; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); border-radius: 10px; color: white; margin: 20px 0;">
-        <h2>🤖 7명의 투자전문 AI와 함께하는 단계별 의사결정</h2>
-        <p style="font-size: 18px; margin: 10px 0;">각 분야 전문가 AI가 순차적으로 분석하여 최적의 투자 전략을 도출합니다</p>
+    <div style="text-align: center; padding: 15px 8px; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); border-radius: 8px; color: white; margin: 15px 0;">
+        <h2 style="font-size: 1rem; margin: 5px 0; line-height: 1.3;">🤖 7명의 투자전문 AI와 함께하는 단계별 의사결정</h2>
+        <p style="font-size: 0.8rem; margin: 8px 0; line-height: 1.4;">각 분야 전문가 AI가 순차적으로 분석하여 최적의 투자 전략을 도출합니다</p>
     </div>
     """, unsafe_allow_html=True)
     
@@ -624,89 +658,75 @@ def tab_intro():
     # 7단계 AI 투자 프로세스 - 깔끔한 박스 스타일 (모바일 최적화)
     st.markdown("### 🚀 **7단계 AI 투자 프로세스**")
     
-    # 깔끔한 프로세스 박스 스타일 - 모바일 우선 설계
+    # 깔끔한 프로세스 박스 스타일 - 모바일 특화 설계
     st.markdown("""
     <style>
     .process-simple-grid {
         display: flex !important;
         flex-wrap: nowrap !important;
-        gap: 3px !important;
+        gap: 2px !important;
         overflow-x: auto !important;
-        margin: 15px 0 !important;
+        margin: 12px 0 !important;
         width: 100% !important;
-        padding: 5px 0 !important;
+        padding: 3px 0 !important;
     }
     
     .process-simple-card {
         flex: 1 !important;
-        min-width: 85px !important;
+        min-width: 70px !important;
         text-align: center !important;
-        padding: 15px 8px !important;
+        padding: 10px 6px !important;
         border: 2px solid #f0f2f6 !important;
-        border-radius: 12px !important;
-        height: 120px !important;
+        border-radius: 8px !important;
+        height: 100px !important;
         display: flex !important;
         flex-direction: column !important;
         justify-content: center !important;
-        margin: 0 2px !important;
+        margin: 0 1px !important;
         background: white !important;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08) !important;
         transition: all 0.3s ease !important;
         position: relative !important;
         box-sizing: border-box !important;
     }
     
     .process-simple-card:hover {
-        transform: translateY(-2px) !important;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.12) !important;
         border-color: #007bff !important;
     }
     
     .process-step-number {
         position: absolute !important;
-        top: -8px !important;
+        top: -6px !important;
         left: 50% !important;
         transform: translateX(-50%) !important;
         background: #007bff !important;
         color: white !important;
         border-radius: 50% !important;
-        width: 20px !important;
-        height: 20px !important;
-        font-size: 10px !important;
+        width: 16px !important;
+        height: 16px !important;
+        font-size: 8px !important;
         font-weight: bold !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        box-shadow: 0 2px 6px rgba(0,123,255,0.3) !important;
+        box-shadow: 0 2px 4px rgba(0,123,255,0.3) !important;
     }
     
-    /* 모바일 최적화 */
-    @media (max-width: 768px) {
+    /* 큰 화면에서만 조금 더 크게 */
+    @media (min-width: 769px) {
         .process-simple-card {
-            min-width: 75px !important;
-            height: 100px !important;
-            padding: 12px 6px !important;
-            border-radius: 8px !important;
+            min-width: 85px !important;
+            height: 120px !important;
+            padding: 15px 8px !important;
+            border-radius: 10px !important;
         }
         .process-step-number {
-            width: 18px !important;
-            height: 18px !important;
-            font-size: 9px !important;
-            top: -7px !important;
-        }
-    }
-    
-    @media (max-width: 480px) {
-        .process-simple-card {
-            min-width: 65px !important;
-            height: 90px !important;
-            padding: 10px 4px !important;
-        }
-        .process-step-number {
-            width: 16px !important;
-            height: 16px !important;
-            font-size: 8px !important;
-            top: -6px !important;
+            width: 20px !important;
+            height: 20px !important;
+            font-size: 10px !important;
+            top: -8px !important;
         }
     }
     </style>
@@ -730,9 +750,9 @@ def tab_intro():
         card_html = f"""
         <div class="process-simple-card">
             <div class="process-step-number">{step}</div>
-            <div style="font-size: clamp(18px, 5vw, 24px); margin-bottom: 8px;">{icon}</div>
-            <div style="font-weight: bold; font-size: clamp(8px, 2.2vw, 11px); margin: 5px 0; line-height: 1.2; color: #495057;">{title}</div>
-            <div style="font-size: clamp(6px, 1.8vw, 9px); color: #666; line-height: 1.3;">{desc}</div>
+            <div style="font-size: 16px; margin-bottom: 6px;">{icon}</div>
+            <div style="font-weight: bold; font-size: 7px; margin: 3px 0; line-height: 1.2; color: #495057;">{title}</div>
+            <div style="font-size: 6px; color: #666; line-height: 1.3;">{desc}</div>
         </div>"""
         
         process_html += card_html
@@ -747,9 +767,9 @@ def tab_intro():
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
         st.markdown("""
-        <div style="text-align: center; padding: 20px;">
-            <h3 style="color: #667eea; margin-bottom: 15px;">🚀 당신만의 투자 전략을 찾아보세요</h3>
-            <p style="color: #666; margin-bottom: 20px;">7명의 AI 전문가가 최적의 투자 솔루션을 제안합니다</p>
+        <div style="text-align: center; padding: 15px 5px;">
+            <h3 style="color: #667eea; margin-bottom: 10px; font-size: 0.9rem; line-height: 1.3;">🚀 당신만의 투자 전략을 찾아보세요</h3>
+            <p style="color: #666; margin-bottom: 15px; font-size: 0.8rem; line-height: 1.4;">7명의 AI 전문가가 최적의 투자 솔루션을 제안합니다</p>
         </div>
         """, unsafe_allow_html=True)
         
