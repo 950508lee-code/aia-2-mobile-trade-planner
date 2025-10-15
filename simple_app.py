@@ -372,19 +372,13 @@ def tab_intro():
         """, unsafe_allow_html=True)
         
         if st.button("🎯 AI 투자 여정 시작하기", type="primary", use_container_width=True):
+            # 세션 상태로 탭 변경
+            st.session_state.current_tab = 1
             st.success("✅ 투자상담매니저로 이동합니다!")
-            # HTML로 탭 전환
-            st.markdown("""
-            <script>
-            setTimeout(function() {
-                var tabs = parent.document.querySelectorAll('[data-testid="stTabs"] button');
-                if (tabs.length > 1) {
-                    tabs[1].click();
-                }
-            }, 300);
-            </script>
-            """, unsafe_allow_html=True)
+            st.info("👆 위의 **👥 투자상담매니저** 탭을 클릭해주세요!")
             st.balloons()
+            # 페이지 새로고침으로 탭 변경 반영
+            st.rerun()
 
 def tab_macro():
     """거시전략가 탭"""
