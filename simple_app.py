@@ -235,8 +235,18 @@ def show_progress_bar():
     </div>
     """, unsafe_allow_html=True)
 
-def show_navigation():
-    """네비게이션 버튼"""
+def show_navigation(current_step):
+    """각 페이지별 맞춤 네비게이션 버튼"""
+    # 각 단계별 다음 버튼 텍스트 정의
+    next_button_texts = [
+        "👥 투자상담 시작하기 ➡️",  # AI 소개
+        "📊 시장분석 보기 ➡️",  # 투자상담매니저
+        "💰 자산배분 보기 ➡️",  # 시장전략가
+        "🔍 산업분석 보기 ➡️",  # 자산배분전문가
+        "📈 종목추천 보기 ➡️",  # 산업리서처
+        "🎆 분석 완료!"  # 종목분석가
+    ]
+    
     col1, col2, col3 = st.columns([1, 2, 1])
     
     with col1:
@@ -247,7 +257,8 @@ def show_navigation():
     
     with col3:
         if st.session_state.current_step < len(STEP_NAMES) - 1:
-            if st.button("다음 ➡️", use_container_width=True, type="primary"):
+            next_text = next_button_texts[current_step]
+            if st.button(next_text, use_container_width=True, type="primary"):
                 st.session_state.current_step += 1
                 st.rerun()
 
@@ -699,8 +710,7 @@ def step_stock_analyzer():
 def main():
     """메인 함수"""
     
-    # 진행 상황 표시
-    show_progress_bar()
+    # 진행 상황 표시 제거 - 깔끔한 UI
     
     st.markdown("---")
     
@@ -721,7 +731,7 @@ def main():
     st.markdown("---")
     
     # 네비게이션 버튼
-    show_navigation()
+    show_navigation(st.session_state.current_step)
 
 if __name__ == "__main__":
     main()
