@@ -586,19 +586,27 @@ def tab_intro():
         (7, "⚡", "매매전략가", "최적 타이밍·포지션 관리", "#607D8B")
     ]
     
-    # HTML로 통합 프로세스 그리드 생성
+    # HTML로 통합 프로세스 그리드 생성 - 안전한 방식
     process_html = '<div class="process-expert-grid">'
+    
     for step, icon, title, desc, color in process_experts:
-        # 색상에 투명도 적용 (rgba 형식으로 변경)
-        bg_color = f"rgba({int(color[1:3], 16)}, {int(color[3:5], 16)}, {int(color[5:7], 16)}, 0.1)"
-        process_html += f"""
+        # RGB 값 계산
+        r = int(color[1:3], 16)
+        g = int(color[3:5], 16) 
+        b = int(color[5:7], 16)
+        bg_color = f"rgba({r}, {g}, {b}, 0.1)"
+        
+        # 각 카드를 개별적으로 생성
+        card_html = f"""
         <div class="process-expert-card" style="border: 2px solid {color}; background: linear-gradient(135deg, white 0%, {bg_color} 100%);">
             <div class="step-number" style="color: {color};">{step}</div>
             <div style="font-size: 20px; margin-bottom: 5px;">{icon}</div>
             <div style="font-weight: bold; font-size: 10px; margin: 3px 0; line-height: 1.2; color: {color};">{title}</div>
             <div style="font-size: 8px; color: #666; line-height: 1.3;">{desc}</div>
-        </div>
-        """
+        </div>"""
+        
+        process_html += card_html
+    
     process_html += '</div>'
     
     st.markdown(process_html, unsafe_allow_html=True)
