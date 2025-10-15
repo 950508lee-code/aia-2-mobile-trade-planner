@@ -64,46 +64,57 @@ def main():
     # 클릭 가능한 탭 메뉴
     tab_names = ["🎯 시작하기", "👥 투자상담매니저", "🎯 투자성향분석결과", "📊 시장전략가", "💰 자산배분전문가", "🔍 산업리서처", "📈 종목분석가", "🏆 포트폴리오전략가", "⚡매매전략가"]
     
-    # 탭 메뉴 스타일 - 강제로 크기 통일
+    # 탭 메뉴 스타일 - 모든 버튼 크기 강제 통일
     st.markdown("""
     <style>
-    /* Streamlit 버튼 스타일 강제 오버라이드 */
-    div[data-testid="column"] > div > div > button {
+    /* 모든 Streamlit 버튼에 동일한 크기 강제 적용 */
+    .stButton > button {
         width: 100% !important;
-        height: 35px !important;
-        min-height: 35px !important;
-        max-height: 35px !important;
-        padding: 4px 8px !important;
-        font-size: 9px !important;
+        height: 32px !important;
+        min-height: 32px !important;
+        max-height: 32px !important;
+        padding: 2px 6px !important;
+        margin: 2px 0 !important;
+        font-size: 8px !important;
         font-weight: 500 !important;
-        border-radius: 12px !important;
-        border: 1px solid #e0e0e0 !important;
-        background-color: white !important;
-        color: #666 !important;
+        border-radius: 8px !important;
+        border: 1px solid #ddd !important;
+        background-color: #f8f9fa !important;
+        color: #495057 !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         text-align: center !important;
-        line-height: 1.2 !important;
+        line-height: 1.1 !important;
         white-space: nowrap !important;
         overflow: hidden !important;
         text-overflow: ellipsis !important;
+        box-sizing: border-box !important;
     }
     
-    /* 활성 탭 스타일 */
-    div[data-testid="column"] > div > div > button[kind="primary"] {
+    /* Primary 버튼 (활성 탭) */
+    .stButton > button[kind="primary"] {
         background-color: #007bff !important;
         color: white !important;
         border-color: #007bff !important;
+        font-weight: 600 !important;
+    }
+    
+    /* Secondary 버튼 */
+    .stButton > button[kind="secondary"] {
+        background-color: #f8f9fa !important;
+        color: #6c757d !important;
+        border-color: #ddd !important;
     }
     
     /* 호버 효과 */
-    div[data-testid="column"] > div > div > button:hover {
-        background-color: #f8f9fa !important;
+    .stButton > button:hover {
+        background-color: #e9ecef !important;
         border-color: #007bff !important;
+        transform: none !important;
     }
     
-    div[data-testid="column"] > div > div > button[kind="primary"]:hover {
+    .stButton > button[kind="primary"]:hover {
         background-color: #0056b3 !important;
         border-color: #0056b3 !important;
     }
