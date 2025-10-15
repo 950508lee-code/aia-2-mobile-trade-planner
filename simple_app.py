@@ -42,15 +42,15 @@ def main():
     if 'current_step' not in st.session_state:
         st.session_state.current_step = 0
     
-    # 상단 제목 - 시각적 구분을 위한 스타일링
+    # 상단 제목 - 검은색 계열 배경에 흰색 글씨
     st.markdown("""
     <div style="
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
         padding: 25px;
         border-radius: 15px;
         text-align: center;
         margin-bottom: 30px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         border: 2px solid rgba(255,255,255,0.1);
     ">
         <h1 style="
@@ -58,7 +58,7 @@ def main():
             margin: 0;
             font-size: 2.5rem;
             font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         ">🤖 딥시그널 (AI Investment Agency)</h1>
         <p style="
             color: rgba(255,255,255,0.9);
