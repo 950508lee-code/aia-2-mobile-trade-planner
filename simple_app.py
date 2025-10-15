@@ -301,49 +301,6 @@ def tab_intro():
     
     st.markdown("<br>", unsafe_allow_html=True)
     
-    col1, col2 = st.columns([1.2, 0.8])
-    
-    with col1:
-        st.markdown("""
-        ### 🎯 **왜 딥시그널인가?**
-        
-        **🧠 집단지성 의사결정**: 8명의 전문 AI가 각각의 전문 영역에서 분석하고 토론하여 편향을 제거합니다
-        
-        **📊 데이터 기반 객관성**: 감정적 판단을 배제하고 순수 데이터와 알고리즘으로 투자 결정을 내립니다
-        
-        **🎨 개인 맞춤형**: 투자자의 성향, 목표, 자금 규모를 반영한 완전 개인화된 포트폴리오를 제안합니다
-        
-        **⚡ 실시간 실행**: 분석부터 매매 타이밍까지 원스톱으로 실제 투자 실행을 지원합니다
-        """)
-    
-    with col2:
-        st.markdown("""
-        ### 💼 **8명의 전문 AI팀**
-        
-        **👥 투자상담매니저**  
-        *투자자 성향 분석*
-        
-        **📊 거시전략가**  
-        *글로벌 경제 분석*
-        
-        **💰 자산배분가**  
-        *포트폴리오 최적화*
-        
-        **🔍 섹터리서처**  
-        *산업별 투자기회 발굴*
-        
-        **📈 종목애널리스트**  
-        *개별 종목 심층분석*
-        
-        **🏆 CIO전략실**  
-        *최종 전략 확정*
-        
-        **⚡ 트레이드플래너**  
-        *매매 타이밍 최적화*
-        """)
-    
-    st.markdown("<br>", unsafe_allow_html=True)
-    
     # 프로세스 플로우
     st.markdown("### 🔄 **투자 의사결정 프로세스**")
     
@@ -361,7 +318,7 @@ def tab_intro():
     for i, (icon, title, desc) in enumerate(process_steps):
         with cols[i]:
             st.markdown(f"""
-            <div style="text-align: center; padding: 10px; border: 2px solid #f0f2f6; border-radius: 10px; height: 120px; display: flex; flex-direction: column; justify-content: center;">
+            <div style="text-align: center; padding: 15px; border: 2px solid #f0f2f6; border-radius: 10px; height: 120px; display: flex; flex-direction: column; justify-content: center;">
                 <div style="font-size: 24px;">{icon}</div>
                 <div style="font-weight: bold; font-size: 12px; margin: 5px 0;">{title}</div>
                 <div style="font-size: 10px; color: #666;">{desc}</div>
@@ -370,29 +327,6 @@ def tab_intro():
         
         if i < len(process_steps) - 1:
             st.markdown("<div style='text-align: center; margin: 10px 0;'>→</div>", unsafe_allow_html=True)
-    
-    st.markdown("<br><br>", unsafe_allow_html=True)
-    
-    # 핵심 특징
-    st.markdown("### ✨ **핵심 경쟁력**")
-    
-    features = [
-        ("🎯", "정밀 타겟팅", "투자자별 맞춤형 전략", "#4CAF50"),
-        ("🔬", "과학적 분석", "AI 기반 객관적 판단", "#2196F3"), 
-        ("⚡", "즉시 실행", "분석부터 매매까지 원스톱", "#FF9800"),
-        ("📱", "언제 어디서", "모바일 접근 24/7 가능", "#9C27B0")
-    ]
-    
-    cols = st.columns(4)
-    for i, (icon, title, desc, color) in enumerate(features):
-        with cols[i]:
-            st.markdown(f"""
-            <div style="text-align: center; padding: 20px; background: {color}15; border-left: 4px solid {color}; border-radius: 5px;">
-                <div style="font-size: 30px; margin-bottom: 10px;">{icon}</div>
-                <div style="font-weight: bold; color: {color}; margin-bottom: 5px;">{title}</div>
-                <div style="font-size: 14px; color: #666;">{desc}</div>
-            </div>
-            """, unsafe_allow_html=True)
     
     st.markdown("<br><br>", unsafe_allow_html=True)
     
@@ -407,18 +341,9 @@ def tab_intro():
         """, unsafe_allow_html=True)
         
         if st.button("🎯 AI 투자 여정 시작하기", type="primary", use_container_width=True):
-            st.success("✅ 투자상담매니저와의 상담이 시작됩니다!")
-            st.info("👆 위의 '👥 투자상담매니저' 탭을 클릭하여 투자 프로필 설정을 시작해주세요!")
-            st.markdown("""
-            <script>
-            setTimeout(function() {
-                var tabs = parent.document.querySelectorAll('[data-testid="stTabs"] button');
-                if (tabs.length > 1) {
-                    tabs[1].click();
-                }
-            }, 1000);
-            </script>
-            """, unsafe_allow_html=True)
+            st.success("✅ 투자상담매니저로 이동합니다!")
+            st.info("👆 위의 **👥 투자상담매니저** 탭을 클릭해주세요!")
+            st.balloons()
 
 def tab_macro():
     """거시전략가 탭"""
