@@ -42,9 +42,35 @@ def main():
     if 'current_step' not in st.session_state:
         st.session_state.current_step = 0
     
-    # 상단 제목
-    st.title("🤖 딥시그널 (AI Investment Agency)")
-    st.markdown("**AI 역할 기반 투자 의사결정 플랫폼**")
+    # 상단 제목 - 시각적 구분을 위한 스타일링
+    st.markdown("""
+    <div style="
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 25px;
+        border-radius: 15px;
+        text-align: center;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        border: 2px solid rgba(255,255,255,0.1);
+    ">
+        <h1 style="
+            color: white;
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        ">🤖 딥시그널 (AI Investment Agency)</h1>
+        <p style="
+            color: rgba(255,255,255,0.9);
+            margin: 10px 0 0 0;
+            font-size: 1.2rem;
+            font-weight: 500;
+        ">AI 역할 기반 투자 의사결정 플랫폼</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # 구분선
+    st.markdown("<hr style='margin: 30px 0; border: 1px solid #e0e0e0;'>", unsafe_allow_html=True)
     
     # 단계별 렌더링
     if st.session_state.current_step == 0:
