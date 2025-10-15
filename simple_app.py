@@ -621,140 +621,118 @@ def tab_intro():
     
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # 7단계 AI 전문가 투자 프로세스 - 통합 버전
+    # 7단계 AI 투자 프로세스 - 깔끔한 박스 스타일 (모바일 최적화)
     st.markdown("### 🚀 **7단계 AI 투자 프로세스**")
     
-    # AI 전문가 프로세스 강력한 반응형 CSS
+    # 깔끔한 프로세스 박스 스타일 - 모바일 우선 설계
     st.markdown("""
     <style>
-    .process-expert-grid {
+    .process-simple-grid {
         display: flex !important;
-        flex-wrap: wrap !important;
-        gap: 4px !important;
-        margin: 10px 0 !important;
-        justify-content: space-between !important;
+        flex-wrap: nowrap !important;
+        gap: 3px !important;
+        overflow-x: auto !important;
+        margin: 15px 0 !important;
         width: 100% !important;
+        padding: 5px 0 !important;
     }
     
-    .process-expert-card {
-        flex: 1 1 calc(25% - 4px) !important;
-        min-width: 120px !important;
-        max-width: 180px !important;
+    .process-simple-card {
+        flex: 1 !important;
+        min-width: 85px !important;
         text-align: center !important;
-        padding: 12px 8px !important;
-        border-radius: 10px !important;
-        height: 140px !important;
+        padding: 15px 8px !important;
+        border: 2px solid #f0f2f6 !important;
+        border-radius: 12px !important;
+        height: 120px !important;
         display: flex !important;
         flex-direction: column !important;
         justify-content: center !important;
-        margin: 2px 0 !important;
+        margin: 0 2px !important;
+        background: white !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+        transition: all 0.3s ease !important;
         position: relative !important;
         box-sizing: border-box !important;
     }
     
-    .step-number {
+    .process-simple-card:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+        border-color: #007bff !important;
+    }
+    
+    .process-step-number {
         position: absolute !important;
-        top: 6px !important;
-        left: 8px !important;
-        background: rgba(255,255,255,0.95) !important;
+        top: -8px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        background: #007bff !important;
+        color: white !important;
         border-radius: 50% !important;
-        width: 22px !important;
-        height: 22px !important;
-        font-size: 11px !important;
+        width: 20px !important;
+        height: 20px !important;
+        font-size: 10px !important;
         font-weight: bold !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+        box-shadow: 0 2px 6px rgba(0,123,255,0.3) !important;
     }
     
-    /* 반응형 브레이크포인트 */
-    @media (max-width: 1200px) {
-        .process-expert-card {
-            flex: 1 1 calc(33.33% - 4px) !important;
-            min-width: 110px !important;
-            height: 130px !important;
-            padding: 10px 6px !important;
+    /* 모바일 최적화 */
+    @media (max-width: 768px) {
+        .process-simple-card {
+            min-width: 75px !important;
+            height: 100px !important;
+            padding: 12px 6px !important;
+            border-radius: 8px !important;
         }
-    }
-    
-    @media (max-width: 900px) {
-        .process-expert-card {
-            flex: 1 1 calc(50% - 4px) !important;
-            min-width: 100px !important;
-            height: 120px !important;
-            padding: 8px 4px !important;
-        }
-        .step-number {
-            width: 20px !important;
-            height: 20px !important;
-            font-size: 10px !important;
-        }
-    }
-    
-    @media (max-width: 600px) {
-        .process-expert-card {
-            flex: 1 1 calc(50% - 2px) !important;
-            min-width: 90px !important;
-            height: 110px !important;
-            padding: 6px 3px !important;
-        }
-        .process-expert-grid {
-            gap: 2px !important;
-        }
-        .step-number {
+        .process-step-number {
             width: 18px !important;
             height: 18px !important;
             font-size: 9px !important;
-            top: 4px !important;
-            left: 6px !important;
+            top: -7px !important;
         }
     }
     
     @media (max-width: 480px) {
-        .process-expert-card {
-            flex: 1 1 calc(50% - 2px) !important;
-            min-width: 80px !important;
-            height: 100px !important;
-            padding: 5px 2px !important;
+        .process-simple-card {
+            min-width: 65px !important;
+            height: 90px !important;
+            padding: 10px 4px !important;
         }
-        .step-number {
+        .process-step-number {
             width: 16px !important;
             height: 16px !important;
             font-size: 8px !important;
+            top: -6px !important;
         }
     }
     </style>
     """, unsafe_allow_html=True)
     
-    # AI 전문가 + 프로세스 통합 데이터
+    # AI 전문가 + 프로세스 통합 데이터 (깔끔한 스타일)
     process_experts = [
-        (1, "👥", "투자상담매니저", "투자자 성향·목표·자금 분석", "#4CAF50"),
-        (2, "📊", "시장전략가", "글로벌 경제환경 진단·전망", "#2196F3"), 
-        (3, "💰", "자산배분전문가", "리스크별 포트폴리오 설계", "#FF9800"),
-        (4, "🔍", "산업리서처", "성장산업 발굴·동력 분석", "#9C27B0"),
-        (5, "📈", "종목분석가", "개별 기업 심층분석·선별", "#E91E63"),
-        (6, "🏆", "포트폴리오전략가", "최종 전략 확정·리스크관리", "#795548"),
-        (7, "⚡", "매매전략가", "최적 타이밍·포지션 관리", "#607D8B")
+        (1, "👥", "투자상담매니저", "투자자 성향·목표·자금 분석"),
+        (2, "📊", "시장전략가", "글로벌 경제환경 진단·전망"), 
+        (3, "💰", "자산배분전문가", "리스크별 포트폴리오 설계"),
+        (4, "🔍", "산업리서처", "성장산업 발굴·동력 분석"),
+        (5, "📈", "종목분석가", "개별 기업 심층분석·선별"),
+        (6, "🏆", "포트폴리오전략가", "최종 전략 확정·리스크관리"),
+        (7, "⚡", "매매전략가", "최적 타이밍·포지션 관리")
     ]
     
-    # HTML로 통합 프로세스 그리드 생성 - 안전한 방식
-    process_html = '<div class="process-expert-grid">'
+    # 깔끔한 프로세스 박스 HTML 생성 (모바일 최적화)
+    process_html = '<div class="process-simple-grid">'
     
-    for step, icon, title, desc, color in process_experts:
-        # RGB 값 계산
-        r = int(color[1:3], 16)
-        g = int(color[3:5], 16) 
-        b = int(color[5:7], 16)
-        bg_color = f"rgba({r}, {g}, {b}, 0.1)"
-        
-        # 각 카드를 개별적으로 생성 - 반응형 텍스트 크기
+    for step, icon, title, desc in process_experts:
         card_html = f"""
-        <div class="process-expert-card" style="border: 2px solid {color}; background: linear-gradient(135deg, white 0%, {bg_color} 100%);">
-            <div class="step-number" style="color: {color};">{step}</div>
-            <div style="font-size: clamp(16px, 4vw, 22px); margin-bottom: 5px;">{icon}</div>
-            <div style="font-weight: bold; font-size: clamp(8px, 2vw, 12px); margin: 3px 0; line-height: 1.2; color: {color};">{title}</div>
-            <div style="font-size: clamp(6px, 1.5vw, 10px); color: #666; line-height: 1.3;">{desc}</div>
+        <div class="process-simple-card">
+            <div class="process-step-number">{step}</div>
+            <div style="font-size: clamp(18px, 5vw, 24px); margin-bottom: 8px;">{icon}</div>
+            <div style="font-weight: bold; font-size: clamp(8px, 2.2vw, 11px); margin: 5px 0; line-height: 1.2; color: #495057;">{title}</div>
+            <div style="font-size: clamp(6px, 1.8vw, 9px); color: #666; line-height: 1.3;">{desc}</div>
         </div>"""
         
         process_html += card_html
