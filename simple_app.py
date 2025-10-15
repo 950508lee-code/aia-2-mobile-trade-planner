@@ -75,17 +75,101 @@ def main():
         max-width: 100% !important;
     }
     
+    /* 강제 가로 배치 - 모바일에서도 컬럼 유지 */
+    .stColumns {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 4px !important;
+        width: 100% !important;
+    }
+    
+    .stColumns > div {
+        flex: 1 !important;
+        min-width: 0 !important;
+    }
+    
+    /* 탭 버튼 모바일에서도 가로 배치 강제 */
+    .stTabs [data-baseweb="tab-list"] {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 2px !important;
+        overflow-x: auto !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        flex: 1 !important;
+        min-width: 90px !important;
+        height: 32px !important;
+        padding: 2px 4px !important;
+        margin: 1px !important;
+        font-size: 8px !important;
+        font-weight: 600 !important;
+        border-radius: 4px !important;
+        border: 1px solid #ddd !important;
+        background-color: #f8f9fa !important;
+        color: #495057 !important;
+        text-align: center !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+    
+    .stTabs [data-baseweb="tab"][aria-selected="true"] {
+        background-color: #007bff !important;
+        color: white !important;
+        border-color: #007bff !important;
+    }
+    
+    @media (max-width: 768px) {
+        .stTabs [data-baseweb="tab"] {
+            min-width: 70px !important;
+            height: 28px !important;
+            font-size: 7px !important;
+            padding: 1px 2px !important;
+        }
+    }
+    
+    /* 모든 Streamlit columns 가로 배치 강제 */
+    .stColumns {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        gap: 5px !important;
+        width: 100% !important;
+        overflow-x: auto !important;
+    }
+    
+    .stColumns > div {
+        flex: 1 !important;
+        min-width: 80px !important;
+        padding: 2px !important;
+        box-sizing: border-box !important;
+    }
+    
+    @media (max-width: 768px) {
+        .stColumns > div {
+            min-width: 70px !important;
+            padding: 1px !important;
+        }
+    }
+    
     /* 모든 버튼 통일 스타일 */
     .stButton > button {
         width: 100% !important;
         height: 35px !important;
         min-height: 35px !important;
         max-height: 35px !important;
-        padding: 4px 6px !important;
+        padding: 2px 4px !important;
         margin: 1px 0 !important;
-        font-size: 10px !important;
+        font-size: 9px !important;
         font-weight: 600 !important;
-        border-radius: 8px !important;
+        border-radius: 6px !important;
         border: 1px solid #ddd !important;
         background-color: #f8f9fa !important;
         color: #495057 !important;
@@ -93,7 +177,7 @@ def main():
         align-items: center !important;
         justify-content: center !important;
         text-align: center !important;
-        line-height: 1.2 !important;
+        line-height: 1.1 !important;
         box-sizing: border-box !important;
         white-space: nowrap !important;
         overflow: hidden !important;
@@ -111,11 +195,6 @@ def main():
     .stButton > button:hover {
         transform: translateY(-1px) !important;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
-    }
-    
-    /* 컬럼 간격 최적화 */
-    .stColumns {
-        gap: 4px !important;
     }
     
     /* 로고 스타일 개선 */
@@ -139,6 +218,25 @@ def main():
         line-height: 1.3 !important;
         margin: 0 !important;
         padding: 8px 0 !important;
+    }
+    
+    /* 모바일 최적화 - 더 작은 폰트와 패딩 */
+    @media (max-width: 768px) {
+        .stButton > button {
+            font-size: 8px !important;
+            height: 32px !important;
+            min-height: 32px !important;
+            max-height: 32px !important;
+            padding: 1px 2px !important;
+        }
+        
+        .logo-text {
+            font-size: 0.8rem !important;
+        }
+        
+        .stColumns {
+            gap: 2px !important;
+        }
     }
     
     /* 반응형 그리드 */
@@ -427,64 +525,81 @@ def tab_intro():
     
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # 7명 AI 전문가 소개
-    st.markdown("### 🤖 **7명의 AI 투자 전문가**")
+    # 7단계 AI 전문가 투자 프로세스 - 통합 버전
+    st.markdown("### 🚀 **7단계 AI 투자 프로세스**")
     
-    ai_experts = [
-        ("👥", "투자상담매니저", "투자자 성향 분석 및 맞춤형 프로필 설정", "#4CAF50"),
-        ("📊", "시장전략가", "글로벌 경제 환경 분석 및 시장 전망", "#2196F3"),
-        ("💰", "자산배분전문가", "리스크 성향별 포트폴리오 최적화", "#FF9800"),
-        ("🔍", "산업리서처", "산업별 투자기회 발굴 및 성장동력 분석", "#9C27B0"),
-        ("📈", "종목분석가", "개별 종목 심층분석 및 투자가치 평가", "#E91E63"),
-        ("🏆", "포트폴리오전략가", "최종 포트폴리오 확정 및 리스크 관리", "#795548"),
-        ("⚡", "매매전략가", "모멘텀+RSI 기반 매매 타이밍 최적화", "#607D8B")
+    # AI 전문가 프로세스 통합 CSS
+    st.markdown("""
+    <style>
+    .process-expert-grid {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 5px !important;
+        margin: 10px 0 !important;
+    }
+    .process-expert-card {
+        flex: 1 1 23% !important;
+        min-width: 120px !important;
+        text-align: center !important;
+        padding: 12px !important;
+        border-radius: 10px !important;
+        height: 140px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        margin: 2px !important;
+        position: relative !important;
+    }
+    .step-number {
+        position: absolute !important;
+        top: 5px !important;
+        left: 8px !important;
+        background: rgba(255,255,255,0.9) !important;
+        border-radius: 50% !important;
+        width: 20px !important;
+        height: 20px !important;
+        font-size: 10px !important;
+        font-weight: bold !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    @media (max-width: 768px) {
+        .process-expert-card {
+            flex: 1 1 48% !important;
+            min-width: 100px !important;
+            height: 120px !important;
+            padding: 8px !important;
+        }
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
+    # AI 전문가 + 프로세스 통합 데이터
+    process_experts = [
+        (1, "👥", "투자상담매니저", "투자자 성향·목표·자금 분석", "#4CAF50"),
+        (2, "📊", "시장전략가", "글로벌 경제환경 진단·전망", "#2196F3"), 
+        (3, "💰", "자산배분전문가", "리스크별 포트폴리오 설계", "#FF9800"),
+        (4, "🔍", "산업리서처", "성장산업 발굴·동력 분석", "#9C27B0"),
+        (5, "📈", "종목분석가", "개별 기업 심층분석·선별", "#E91E63"),
+        (6, "🏆", "포트폴리오전략가", "최종 전략 확정·리스크관리", "#795548"),
+        (7, "⚡", "매매전략가", "최적 타이밍·포지션 관리", "#607D8B")
     ]
     
-    # 2x4 그리드로 배치 (7명이므로 마지막은 빈 공간)
-    for row in range(2):
-        cols = st.columns(4)
-        for col in range(4):
-            idx = row * 4 + col
-            if idx < len(ai_experts):
-                icon, title, desc, color = ai_experts[idx]
-                with cols[col]:
-                    st.markdown(f"""
-                    <div style="text-align: center; padding: 15px; background: {color}15; border: 2px solid {color}; border-radius: 10px; height: 130px; display: flex; flex-direction: column; justify-content: center; margin: 5px;">
-                        <div style="font-size: 28px; margin-bottom: 8px;">{icon}</div>
-                        <div style="font-weight: bold; color: {color}; font-size: 13px; margin-bottom: 5px;">{title}</div>
-                        <div style="font-size: 10px; color: #666; line-height: 1.3;">{desc}</div>
-                    </div>
-                    """, unsafe_allow_html=True)
-            else:
-                with cols[col]:
-                    st.empty()
+    # HTML로 통합 프로세스 그리드 생성
+    process_html = '<div class="process-expert-grid">'
+    for step, icon, title, desc, color in process_experts:
+        process_html += f"""
+        <div class="process-expert-card" style="border: 2px solid {color}; background: linear-gradient(135deg, white 0%, {color}10 100%);">
+            <div class="step-number" style="color: {color};">{step}</div>
+            <div style="font-size: 20px; margin-bottom: 5px;">{icon}</div>
+            <div style="font-weight: bold; font-size: 10px; margin: 3px 0; line-height: 1.2; color: {color};">{title}</div>
+            <div style="font-size: 8px; color: #666; line-height: 1.3;">{desc}</div>
+        </div>
+        """
+    process_html += '</div>'
     
-    st.markdown("<br>", unsafe_allow_html=True)
-    
-    # 프로세스 플로우 (화살표 제거)
-    st.markdown("### 🔄 **투자 의사결정 프로세스**")
-    
-    process_steps = [
-        ("👥", "투자 프로필링", "성향·목표·자금 분석"),
-        ("📊", "시장환경 진단", "경제 시나리오 설정"),
-        ("💰", "자산배분 설계", "리스크 최적화"),
-        ("🔍", "산업 발굴", "성장동력 분석"),
-        ("📈", "종목 선별", "개별 기업 분석"),
-        ("🏆", "포트폴리오 확정", "전략 완성"),
-        ("⚡", "매매 계획", "타이밍 설정")
-    ]
-    
-    # 화살표 없이 단순하게 배치 - 박스 크기 확대
-    cols = st.columns(7)
-    for i, (icon, title, desc) in enumerate(process_steps):
-        with cols[i]:
-            st.markdown(f"""
-            <div style="text-align: center; padding: 20px 10px; border: 2px solid #f0f2f6; border-radius: 10px; height: 140px; display: flex; flex-direction: column; justify-content: center; min-width: 120px;">
-                <div style="font-size: 24px;">{icon}</div>
-                <div style="font-weight: bold; font-size: 12px; margin: 8px 0; line-height: 1.3;">{title}</div>
-                <div style="font-size: 10px; color: #666; line-height: 1.4; word-break: keep-all;">{desc}</div>
-            </div>
-            """, unsafe_allow_html=True)
+    st.markdown(process_html, unsafe_allow_html=True)
     
     st.markdown("<br><br>", unsafe_allow_html=True)
     
@@ -493,13 +608,17 @@ def tab_intro():
     with col2:
         st.markdown("""
         <div style="text-align: center; padding: 20px;">
-            <h3 style="color: #667eea; margin-bottom: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">🚀 당신만의 투자 전략을 찾아보세요</h3>
-            <p style="color: #666; margin-bottom: 20px; white-space: nowrap;">7명의 AI 전문가가 최적의 투자 솔루션을 제안합니다</p>
+            <h3 style="color: #667eea; margin-bottom: 15px;">🚀 당신만의 투자 전략을 찾아보세요</h3>
+            <p style="color: #666; margin-bottom: 20px;">7명의 AI 전문가가 최적의 투자 솔루션을 제안합니다</p>
         </div>
         """, unsafe_allow_html=True)
         
         if st.button("🎯 AI 투자 여정 시작하기", type="primary", use_container_width=True):
             # 다음 단계(투자상담매니저)로 이동
+            st.session_state.current_step = 1
+            st.success("👥 투자상담매니저가 여러분을 맞이합니다!")
+            st.balloons()
+            st.rerun()
             st.session_state.current_step = 1
             st.success("✅ 시장전략가로 이동합니다!")
             st.balloons()
