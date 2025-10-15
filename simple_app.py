@@ -38,30 +38,51 @@ def format_percent(value):
 def main():
     """메인 애플리케이션"""
     
+    # 세션 상태 초기화
+    if 'current_step' not in st.session_state:
+        st.session_state.current_step = 0
+    
     # 상단 제목
     st.title("🤖 딥시그널 (AI Investment Agency)")
     st.markdown("**AI 역할 기반 투자 의사결정 플랫폼**")
     
-    # 탭 네비게이션
-    tab_names = ["🎯 인트로", "👥 투자상담매니저", "� 거시전략가", "💰 자산배분가", "🔍 섹터리서처", "📈 종목애널리스트", "🏆 CIO전략실", "⚡ Trade Planner"]
-    tabs = st.tabs(tab_names)
-    
-    with tabs[0]:
+    # 단계별 렌더링
+    if st.session_state.current_step == 0:
         tab_intro()
-    with tabs[1]:
+    elif st.session_state.current_step == 1:
         tab_consultant()
-    with tabs[2]:
+    elif st.session_state.current_step == 2:
         tab_macro()
-    with tabs[3]:
+    elif st.session_state.current_step == 3:
         tab_allocation()
-    with tabs[4]:
+    elif st.session_state.current_step == 4:
         tab_sector()
-    with tabs[5]:
+    elif st.session_state.current_step == 5:
         tab_analyst()
-    with tabs[6]:
+    elif st.session_state.current_step == 6:
         tab_cio()
-    with tabs[7]:
+    elif st.session_state.current_step == 7:
         tab_trade_planner()
+    
+    # 하단 네비게이션 바
+    st.markdown("---")
+    col1, col2, col3 = st.columns([1, 2, 1])
+    
+    with col1:
+        if st.session_state.current_step > 0:
+            if st.button("⬅️ 이전 단계", use_container_width=True):
+                st.session_state.current_step -= 1
+                st.rerun()
+    
+    with col2:
+        step_names = ["🎯 인트로", "👥 투자상담매니저", "🌍 거시전략가", "💰 자산배분가", "🔍 섹터리서처", "📈 종목애널리스트", "🏆 CIO전략실", "⚡ Trade Planner"]
+        st.markdown(f"**{step_names[st.session_state.current_step]} ({st.session_state.current_step + 1}/8)**")
+    
+    with col3:
+        if st.session_state.current_step < 7:
+            if st.button("다음 단계 ➡️", use_container_width=True):
+                st.session_state.current_step += 1
+                st.rerun()
 
 def tab_consultant():
     """투자상담매니저 탭"""
@@ -372,21 +393,11 @@ def tab_intro():
         """, unsafe_allow_html=True)
         
         if st.button("🎯 AI 투자 여정 시작하기", type="primary", use_container_width=True):
-            st.success("✅ 투자 여정이 시작되었습니다!")
-            st.markdown("""
-            <div style="background: linear-gradient(90deg, #4CAF50 0%, #45a049 100%); padding: 20px; border-radius: 10px; text-align: center; color: white; margin: 20px 0; animation: pulse 2s infinite;">
-                <h3 style="margin: 0; color: white;">👆 위의 "👥 투자상담매니저" 탭을 클릭하세요! 👆</h3>
-                <p style="margin: 10px 0 0 0; font-size: 16px;">첫 번째 AI 전문가가 투자 프로필 분석을 시작합니다</p>
-            </div>
-            <style>
-            @keyframes pulse {
-                0% { transform: scale(1); }
-                50% { transform: scale(1.05); }
-                100% { transform: scale(1); }
-            }
-            </style>
-            """, unsafe_allow_html=True)
+            # 다음 단계(투자상담매니저)로 이동
+            st.session_state.current_step = 1
+            st.success("✅ 투자상담매니저로 이동합니다!")
             st.balloons()
+            st.rerun()
 
 def tab_macro():
     """거시전략가 탭"""
