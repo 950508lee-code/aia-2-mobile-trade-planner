@@ -1283,12 +1283,12 @@ def tab_intro():
     # 메인 비전 - 모바일 친화적 큰 글씨
     st.markdown("""
     <div style="text-align: center; padding: 30px 20px; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); border-radius: 15px; color: white; margin: 20px 0;">
-        <h1 style="font-size: 2.5rem; margin: 15px 0; line-height: 1.3;">🤖 7명의 투자전문 AI</h1>
-        <p style="font-size: 1.6rem; margin: 20px 0; line-height: 1.4;">각 분야 전문가 AI가 순차적으로<br>최적의 투자 전략을 도출합니다</p>
+        <h1 style="font-size: 3.5rem; margin: 15px 0; line-height: 1.3;">🤖 7명의 투자전문 AI</h1>
+        <p style="font-size: 2.2rem; margin: 20px 0; line-height: 1.4;">각 분야 전문가 AI가 순차적으로<br>최적의 투자 전략을 도출합니다</p>
     </div>
     """, unsafe_allow_html=True)
     
-    st.markdown("<h2 style='font-size: 2rem; margin: 25px 0; color: #2c3e50; text-align: center;'>✨ <strong>AI 투자 자문의 특별함</strong></h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='font-size: 2.8rem; margin: 25px 0; color: #2c3e50; text-align: center;'>✨ <strong>AI 투자 자문의 특별함</strong></h2>", unsafe_allow_html=True)
     
     # 특징들을 큰 카드로 표시
     features = [
@@ -1302,14 +1302,14 @@ def tab_intro():
     for i, (icon, title, desc) in enumerate(features):
         with cols[i]:
             st.markdown(f"""
-            <div style="text-align: center; padding: 25px 20px; border: 2px solid #e1e5e9; border-radius: 15px; height: 180px; display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); margin: 10px 0;">
-                <div style="font-size: 3.5rem; margin-bottom: 15px;">{icon}</div>
-                <div style="font-weight: bold; font-size: 1.5rem; margin: 10px 0; color: #2c3e50;">{title}</div>
-                <div style="font-size: 1.2rem; color: #495057; line-height: 1.4;">{desc}</div>
+            <div style="text-align: center; padding: 30px 25px; border: 3px solid #e1e5e9; border-radius: 15px; height: 220px; display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); margin: 10px 0;">
+                <div style="font-size: 4.5rem; margin-bottom: 15px;">{icon}</div>
+                <div style="font-weight: bold; font-size: 2rem; margin: 10px 0; color: #2c3e50;">{title}</div>
+                <div style="font-size: 1.6rem; color: #495057; line-height: 1.4;">{desc}</div>
             </div>
             """, unsafe_allow_html=True)
     
-    st.markdown("<h2 style='font-size: 2rem; margin: 25px 0; color: #2c3e50; text-align: center;'>👥 <strong>7명의 AI 투자 전문가</strong></h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='font-size: 2.8rem; margin: 25px 0; color: #2c3e50; text-align: center;'>👥 <strong>7명의 AI 투자 전문가</strong></h2>", unsafe_allow_html=True)
     
     # 7명의 AI 전문가 소개
     experts = [
@@ -1328,10 +1328,10 @@ def tab_intro():
         for i, (icon, title, desc, color) in enumerate(row):
             with cols[i]:
                 st.markdown(f"""
-                <div style="text-align: center; padding: 25px 15px; border: 2px solid {color}; border-radius: 12px; height: 170px; display: flex; flex-direction: column; justify-content: center; background: white; margin: 8px 0; position: relative;">
-                    <div style="font-size: 3rem; margin: 10px 0;">{icon}</div>
-                    <div style="font-weight: bold; font-size: 1.2rem; margin: 8px 0; color: {color}; line-height: 1.2;">{title}</div>
-                    <div style="font-size: 1rem; color: #666; line-height: 1.3;">{desc}</div>
+                <div style="text-align: center; padding: 30px 20px; border: 3px solid {color}; border-radius: 12px; height: 210px; display: flex; flex-direction: column; justify-content: center; background: white; margin: 8px 0; position: relative;">
+                    <div style="font-size: 4rem; margin: 10px 0;">{icon}</div>
+                    <div style="font-weight: bold; font-size: 1.5rem; margin: 8px 0; color: {color}; line-height: 1.2;">{title}</div>
+                    <div style="font-size: 1.3rem; color: #666; line-height: 1.3;">{desc}</div>
                 </div>
                 """, unsafe_allow_html=True)
     
@@ -1348,9 +1348,9 @@ def tab_process():
     """프로세스 소개 탭 - 모바일 최적화"""
     
     st.markdown("""
-    <div style="text-align: center; padding: 20px 15px; background: linear-gradient(90deg, #28a745 0%, #20c997 100%); border-radius: 12px; color: white; margin: 20px 0;">
-        <h1 style="font-size: 2.2rem; margin: 10px 0; line-height: 1.4;">🔄 7단계 투자 프로세스</h1>
-        <p style="font-size: 1.4rem; margin: 15px 0; line-height: 1.5;">체계적이고 과학적인<br>단계별 투자 의사결정</p>
+    <div style="text-align: center; padding: 30px 20px; background: linear-gradient(90deg, #28a745 0%, #20c997 100%); border-radius: 15px; color: white; margin: 20px 0;">
+        <h1 style="font-size: 3.2rem; margin: 15px 0; line-height: 1.3;">🔄 7단계 투자 프로세스</h1>
+        <p style="font-size: 2rem; margin: 20px 0; line-height: 1.4;">체계적이고 과학적인<br>단계별 투자 의사결정</p>
     </div>
     """, unsafe_allow_html=True)
     
@@ -1374,11 +1374,11 @@ def tab_process():
         for i, (step, icon, title, desc) in enumerate(row):
             with cols[i]:
                 st.markdown(f"""
-                <div style="text-align: center; padding: 20px 10px; border: 2px solid #007bff; border-radius: 12px; height: 150px; display: flex; flex-direction: column; justify-content: center; background: white; margin: 5px 0; position: relative;">
-                    <div style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #007bff; color: white; border-radius: 50%; width: 28px; height: 28px; font-size: 14px; font-weight: bold; display: flex; align-items: center; justify-content: center;">{step}</div>
-                    <div style="font-size: 2.5rem; margin: 8px 0;">{icon}</div>
-                    <div style="font-weight: bold; font-size: 1.1rem; margin: 5px 0; color: #2c3e50;">{title}</div>
-                    <div style="font-size: 1rem; color: #6c757d;">{desc}</div>
+                <div style="text-align: center; padding: 25px 15px; border: 3px solid #007bff; border-radius: 12px; height: 170px; display: flex; flex-direction: column; justify-content: center; background: white; margin: 5px 0; position: relative;">
+                    <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #007bff; color: white; border-radius: 50%; width: 32px; height: 32px; font-size: 16px; font-weight: bold; display: flex; align-items: center; justify-content: center;">{step}</div>
+                    <div style="font-size: 3rem; margin: 8px 0;">{icon}</div>
+                    <div style="font-weight: bold; font-size: 1.4rem; margin: 5px 0; color: #2c3e50;">{title}</div>
+                    <div style="font-size: 1.2rem; color: #6c757d;">{desc}</div>
                 </div>
                 """, unsafe_allow_html=True)
     
@@ -1396,9 +1396,9 @@ def tab_start():
     """시작하기 탭 - 모바일 최적화"""
     
     st.markdown("""
-    <div style="text-align: center; padding: 25px 15px; background: linear-gradient(90deg, #dc3545 0%, #fd7e14 100%); border-radius: 12px; color: white; margin: 20px 0;">
-        <h1 style="font-size: 2.2rem; margin: 10px 0; line-height: 1.4;">🚀 투자 여정 시작</h1>
-        <p style="font-size: 1.4rem; margin: 15px 0; line-height: 1.5;">지금부터 AI와 함께<br>당신만의 투자 전략을 만들어보세요</p>
+    <div style="text-align: center; padding: 30px 20px; background: linear-gradient(90deg, #dc3545 0%, #fd7e14 100%); border-radius: 15px; color: white; margin: 20px 0;">
+        <h1 style="font-size: 3.2rem; margin: 15px 0; line-height: 1.3;">🚀 투자 여정 시작</h1>
+        <p style="font-size: 2rem; margin: 20px 0; line-height: 1.4;">지금부터 AI와 함께<br>당신만의 투자 전략을 만들어보세요</p>
     </div>
     """, unsafe_allow_html=True)
     
@@ -1419,10 +1419,10 @@ def tab_start():
                 icon, title, desc = preparations[i + j]
                 with cols[j]:
                     st.markdown(f"""
-                    <div style="padding: 20px 15px; border: 2px solid #ffc107; border-radius: 12px; height: 150px; display: flex; flex-direction: column; justify-content: center; background: #fff8e1; margin: 8px 0;">
-                        <div style="font-size: 2.5rem; margin-bottom: 8px; text-align: center;">{icon}</div>
-                        <div style="font-weight: bold; font-size: 1.2rem; margin: 5px 0; text-align: center; color: #856404;">{title}</div>
-                        <div style="font-size: 1rem; color: #856404; line-height: 1.4; text-align: center;">{desc}</div>
+                    <div style="padding: 25px 20px; border: 3px solid #ffc107; border-radius: 12px; height: 170px; display: flex; flex-direction: column; justify-content: center; background: #fff8e1; margin: 8px 0;">
+                        <div style="font-size: 3rem; margin-bottom: 8px; text-align: center;">{icon}</div>
+                        <div style="font-weight: bold; font-size: 1.5rem; margin: 5px 0; text-align: center; color: #856404;">{title}</div>
+                        <div style="font-size: 1.2rem; color: #856404; line-height: 1.4; text-align: center;">{desc}</div>
                     </div>
                     """, unsafe_allow_html=True)
     
