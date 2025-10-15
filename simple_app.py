@@ -70,20 +70,25 @@ def main():
     .tab-container {
         display: flex;
         flex-wrap: wrap;
-        gap: 8px;
+        gap: 6px;
         margin-bottom: 20px;
         padding: 10px 0;
     }
     .tab-item {
-        padding: 8px 12px;
-        border-radius: 20px;
-        font-size: 12px;
+        padding: 6px 10px;
+        border-radius: 15px;
+        font-size: 10px;
         font-weight: 500;
         cursor: pointer;
         transition: all 0.3s ease;
         border: 1px solid #e0e0e0;
         background: white;
         color: #666;
+        min-height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
     }
     .tab-item:hover {
         background: #f8f9fa;
