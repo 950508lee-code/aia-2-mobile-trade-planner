@@ -388,24 +388,24 @@ def main():
                 st.rerun()
         st.markdown("<div style='margin: 5px 0;'></div>", unsafe_allow_html=True)
     
-    # 탭 메뉴 (4+4 구성)
-    tab_names = ["👥 투자상담매니저", "🎯 투자성향분석결과", "📊 시장전략가", "💰 자산배분전문가", "🔍 산업리서처", "📈 종목분석가", "🏆 포트폴리오전략가", "⚡매매전략가"]
+    # 탭 메뉴 (시작하기 3단계 + 실제 분석 5단계)
+    tab_names = ["🏠 AI 소개", "� 프로세스", "🎯 시작하기", "👥 투자상담매니저", "📊 시장전략가", "💰 자산배분전문가", "🔍 산업리서처", "📈 종목분석가"]
     
-    # 첫 번째 줄 (4개)
+    # 첫 번째 줄 (4개) - 시작하기 3단계 + 투자상담매니저
     cols1 = st.columns(4)
     for i in range(4):
         with cols1[i]:
-            tab_index = i + 1
+            tab_index = i
             button_type = "primary" if tab_index == st.session_state.current_step else "secondary"
             if st.button(tab_names[i], key=f"tab_{tab_index}", use_container_width=True, type=button_type):
                 st.session_state.current_step = tab_index
                 st.rerun()
     
-    # 두 번째 줄 (4개)
+    # 두 번째 줄 (4개) - 나머지 분석 단계들
     cols2 = st.columns(4)
     for i in range(4):
         with cols2[i]:
-            tab_index = i + 5
+            tab_index = i + 4
             button_type = "primary" if tab_index == st.session_state.current_step else "secondary"
             if st.button(tab_names[i+4], key=f"tab_{tab_index}", use_container_width=True, type=button_type):
                 st.session_state.current_step = tab_index
@@ -415,23 +415,21 @@ def main():
     
     # 단계별 렌더링
     if st.session_state.current_step == 0:
-        tab_intro()
+        tab_ai_intro()  # AI 소개
     elif st.session_state.current_step == 1:
-        tab_consultant()
+        tab_process()   # 프로세스 소개
     elif st.session_state.current_step == 2:
-        tab_profile_analysis()
+        tab_start()     # 시작하기
     elif st.session_state.current_step == 3:
-        tab_macro()
+        tab_consultant()
     elif st.session_state.current_step == 4:
-        tab_allocation()
+        tab_macro()
     elif st.session_state.current_step == 5:
-        tab_sector()
+        tab_allocation()
     elif st.session_state.current_step == 6:
-        tab_analyst()
+        tab_sector()
     elif st.session_state.current_step == 7:
-        tab_cio()
-    elif st.session_state.current_step == 8:
-        tab_trade_planner()
+        tab_analyst()
     
 
 
@@ -658,31 +656,32 @@ def tab_intro():
     # 7단계 AI 투자 프로세스 - 깔끔한 박스 스타일 (모바일 최적화)
     st.markdown("### 🚀 **7단계 AI 투자 프로세스**")
     
-    # 깔끔한 프로세스 박스 스타일 - 모바일 특화 설계
+    # 깔끔한 프로세스 박스 스타일 - 모바일에서 2줄 배치
     st.markdown("""
     <style>
     .process-simple-grid {
         display: flex !important;
-        flex-wrap: nowrap !important;
-        gap: 2px !important;
-        overflow-x: auto !important;
+        flex-wrap: wrap !important;
+        gap: 4px !important;
         margin: 12px 0 !important;
         width: 100% !important;
         padding: 3px 0 !important;
+        justify-content: space-between !important;
     }
     
     .process-simple-card {
-        flex: 1 !important;
-        min-width: 70px !important;
+        flex: 1 1 calc(50% - 4px) !important;
+        max-width: calc(50% - 4px) !important;
+        min-width: 140px !important;
         text-align: center !important;
-        padding: 10px 6px !important;
+        padding: 12px 8px !important;
         border: 2px solid #f0f2f6 !important;
-        border-radius: 8px !important;
-        height: 100px !important;
+        border-radius: 10px !important;
+        height: 110px !important;
         display: flex !important;
         flex-direction: column !important;
         justify-content: center !important;
-        margin: 0 1px !important;
+        margin: 2px 0 !important;
         background: white !important;
         box-shadow: 0 2px 6px rgba(0,0,0,0.08) !important;
         transition: all 0.3s ease !important;
@@ -698,15 +697,15 @@ def tab_intro():
     
     .process-step-number {
         position: absolute !important;
-        top: -6px !important;
+        top: -8px !important;
         left: 50% !important;
         transform: translateX(-50%) !important;
         background: #007bff !important;
         color: white !important;
         border-radius: 50% !important;
-        width: 16px !important;
-        height: 16px !important;
-        font-size: 8px !important;
+        width: 20px !important;
+        height: 20px !important;
+        font-size: 10px !important;
         font-weight: bold !important;
         display: flex !important;
         align-items: center !important;
@@ -714,19 +713,18 @@ def tab_intro():
         box-shadow: 0 2px 4px rgba(0,123,255,0.3) !important;
     }
     
-    /* 큰 화면에서만 조금 더 크게 */
+    /* 큰 화면에서는 한 줄로 */
     @media (min-width: 769px) {
+        .process-simple-grid {
+            flex-wrap: nowrap !important;
+            overflow-x: auto !important;
+        }
         .process-simple-card {
-            min-width: 85px !important;
+            flex: 1 !important;
+            max-width: none !important;
+            min-width: 110px !important;
             height: 120px !important;
             padding: 15px 8px !important;
-            border-radius: 10px !important;
-        }
-        .process-step-number {
-            width: 20px !important;
-            height: 20px !important;
-            font-size: 10px !important;
-            top: -8px !important;
         }
     }
     </style>
@@ -750,9 +748,9 @@ def tab_intro():
         card_html = f"""
         <div class="process-simple-card">
             <div class="process-step-number">{step}</div>
-            <div style="font-size: 16px; margin-bottom: 6px;">{icon}</div>
-            <div style="font-weight: bold; font-size: 7px; margin: 3px 0; line-height: 1.2; color: #495057;">{title}</div>
-            <div style="font-size: 6px; color: #666; line-height: 1.3;">{desc}</div>
+            <div style="font-size: 20px; margin-bottom: 8px;">{icon}</div>
+            <div style="font-weight: bold; font-size: 9px; margin: 4px 0; line-height: 1.2; color: #495057;">{title}</div>
+            <div style="font-size: 8px; color: #666; line-height: 1.3;">{desc}</div>
         </div>"""
         
         process_html += card_html
@@ -1253,6 +1251,141 @@ def tab_trade_planner():
         - 감정보다는 지표 신호를 신뢰하고 일관성 유지
         - 장기 모멘텀과 단기 RSI의 조화로운 매매 타이밍 포착
         """)
+
+def tab_ai_intro():
+    """AI 소개 탭 - 모바일 최적화"""
+    
+    # 메인 비전 - 큰 글씨로 모바일 친화적
+    st.markdown("""
+    <div style="text-align: center; padding: 25px 15px; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); border-radius: 12px; color: white; margin: 20px 0;">
+        <h1 style="font-size: 1.6rem; margin: 10px 0; line-height: 1.4;">🤖 7명의 투자전문 AI</h1>
+        <p style="font-size: 1.1rem; margin: 15px 0; line-height: 1.5;">각 분야 전문가 AI가 순차적으로<br>최적의 투자 전략을 도출합니다</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("### ✨ **AI 투자 자문의 특별함**")
+    
+    # 특징들을 큰 카드로 표시
+    features = [
+        ("🎯", "개인 맞춤형", "투자자의 성향과 목표에<br>완벽히 맞춘 전략"),
+        ("⚡", "실시간 분석", "시장 변화를 즉시 반영한<br>동적 포트폴리오"),
+        ("🛡️", "리스크 관리", "데이터 기반의 정교한<br>위험 통제 시스템"),
+        ("📈", "성과 최적화", "AI 알고리즘이 찾아낸<br>수익 극대화 전략")
+    ]
+    
+    for i in range(0, len(features), 2):
+        cols = st.columns(2)
+        for j in range(2):
+            if i + j < len(features):
+                icon, title, desc = features[i + j]
+                with cols[j]:
+                    st.markdown(f"""
+                    <div style="text-align: center; padding: 20px 15px; border: 2px solid #e1e5e9; border-radius: 15px; height: 140px; display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); margin: 8px 0;">
+                        <div style="font-size: 2.5rem; margin-bottom: 10px;">{icon}</div>
+                        <div style="font-weight: bold; font-size: 1rem; margin: 8px 0; color: #2c3e50;">{title}</div>
+                        <div style="font-size: 0.9rem; color: #495057; line-height: 1.4;">{desc}</div>
+                    </div>
+                    """, unsafe_allow_html=True)
+    
+    # 다음 단계 버튼
+    st.markdown("<br>", unsafe_allow_html=True)
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        if st.button("📋 투자 프로세스 보기", type="primary", use_container_width=True):
+            st.session_state.current_step = 1
+            st.balloons()
+            st.rerun()
+
+def tab_process():
+    """프로세스 소개 탭 - 모바일 최적화"""
+    
+    st.markdown("""
+    <div style="text-align: center; padding: 20px 15px; background: linear-gradient(90deg, #28a745 0%, #20c997 100%); border-radius: 12px; color: white; margin: 20px 0;">
+        <h1 style="font-size: 1.6rem; margin: 10px 0; line-height: 1.4;">🔄 7단계 투자 프로세스</h1>
+        <p style="font-size: 1.1rem; margin: 15px 0; line-height: 1.5;">체계적이고 과학적인<br>단계별 투자 의사결정</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # 프로세스 단계들을 2줄로 배치 (모바일 친화적)
+    st.markdown("### 📊 **단계별 투자 프로세스**")
+    
+    # 프로세스 데이터 - 더 큰 글씨로
+    process_experts = [
+        (1, "👥", "투자상담매니저", "성향 분석"),
+        (2, "📊", "시장전략가", "환경 진단"),
+        (3, "💰", "자산배분전문가", "포트폴리오 설계"),
+        (4, "🔍", "산업리서처", "성장동력 발굴"),
+        (5, "📈", "종목분석가", "기업 분석"),
+        (6, "🏆", "포트폴리오전략가", "전략 확정"),
+        (7, "⚡", "매매전략가", "타이밍 최적화")
+    ]
+    
+    # 4개씩 2줄로 배치
+    for row in [process_experts[:4], process_experts[4:]]:
+        cols = st.columns(len(row))
+        for i, (step, icon, title, desc) in enumerate(row):
+            with cols[i]:
+                st.markdown(f"""
+                <div style="text-align: center; padding: 20px 10px; border: 2px solid #007bff; border-radius: 12px; height: 130px; display: flex; flex-direction: column; justify-content: center; background: white; margin: 5px 0; position: relative;">
+                    <div style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #007bff; color: white; border-radius: 50%; width: 24px; height: 24px; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center;">{step}</div>
+                    <div style="font-size: 2rem; margin: 8px 0;">{icon}</div>
+                    <div style="font-weight: bold; font-size: 0.9rem; margin: 5px 0; color: #2c3e50;">{title}</div>
+                    <div style="font-size: 0.8rem; color: #6c757d;">{desc}</div>
+                </div>
+                """, unsafe_allow_html=True)
+    
+    # 다음 단계 버튼
+    st.markdown("<br>", unsafe_allow_html=True)
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        if st.button("🎯 AI 투자 여정 시작하기", type="primary", use_container_width=True):
+            st.session_state.current_step = 2
+            st.success("🚀 AI 투자 여정을 시작합니다!")
+            st.balloons()
+            st.rerun()
+
+def tab_start():
+    """시작하기 탭 - 모바일 최적화"""
+    
+    st.markdown("""
+    <div style="text-align: center; padding: 25px 15px; background: linear-gradient(90deg, #dc3545 0%, #fd7e14 100%); border-radius: 12px; color: white; margin: 20px 0;">
+        <h1 style="font-size: 1.6rem; margin: 10px 0; line-height: 1.4;">🚀 투자 여정 시작</h1>
+        <p style="font-size: 1.1rem; margin: 15px 0; line-height: 1.5;">지금부터 AI와 함께<br>당신만의 투자 전략을 만들어보세요</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("### 💡 **시작하기 전에**")
+    
+    # 준비사항들
+    preparations = [
+        ("💰", "투자 가능 금액", "현재 투자할 수 있는 자금 규모를 생각해보세요"),
+        ("🎯", "투자 목표", "언제까지 얼마의 수익을 원하는지 정해보세요"),
+        ("⚖️", "위험 성향", "손실을 어느 정도까지 감내할 수 있는지 생각해보세요"),
+        ("⏰", "투자 기간", "단기, 중기, 장기 중 어떤 투자를 원하는지 정해보세요")
+    ]
+    
+    for i in range(0, len(preparations), 2):
+        cols = st.columns(2)
+        for j in range(2):
+            if i + j < len(preparations):
+                icon, title, desc = preparations[i + j]
+                with cols[j]:
+                    st.markdown(f"""
+                    <div style="padding: 20px 15px; border: 2px solid #ffc107; border-radius: 12px; height: 130px; display: flex; flex-direction: column; justify-content: center; background: #fff8e1; margin: 8px 0;">
+                        <div style="font-size: 2rem; margin-bottom: 8px; text-align: center;">{icon}</div>
+                        <div style="font-weight: bold; font-size: 1rem; margin: 5px 0; text-align: center; color: #856404;">{title}</div>
+                        <div style="font-size: 0.85rem; color: #856404; line-height: 1.4; text-align: center;">{desc}</div>
+                    </div>
+                    """, unsafe_allow_html=True)
+    
+    # 투자상담매니저로 이동 버튼
+    st.markdown("<br>", unsafe_allow_html=True)
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        if st.button("👥 투자상담매니저와 상담하기", type="primary", use_container_width=True):
+            st.session_state.current_step = 3
+            st.success("👥 투자상담매니저가 여러분을 맞이합니다!")
+            st.rerun()
 
 if __name__ == "__main__":
     main()
