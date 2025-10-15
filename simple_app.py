@@ -407,24 +407,24 @@ def tab_intro():
     st.markdown("### 🔄 **투자 의사결정 프로세스**")
     
     process_steps = [
-        ("👥", "투자 프로필링", "성향분석"),
-        ("📊", "시장환경 진단", "시나리오설정"),
-        ("💰", "자산배분 설계", "리스크최적화"),
-        ("🔍", "산업 발굴", "성장동력분석"),
-        ("📈", "종목 선별", "기업분석"),
-        ("🏆", "포트폴리오 확정", "전략완성"),
-        ("⚡", "매매 계획", "타이밍설정")
+        ("👥", "투자 프로필링", "성향·목표·자금 분석"),
+        ("📊", "시장환경 진단", "경제 시나리오 설정"),
+        ("💰", "자산배분 설계", "리스크 최적화"),
+        ("🔍", "산업 발굴", "성장동력 분석"),
+        ("📈", "종목 선별", "개별 기업 분석"),
+        ("🏆", "포트폴리오 확정", "전략 완성"),
+        ("⚡", "매매 계획", "타이밍 설정")
     ]
     
-    # 화살표 없이 단순하게 배치
+    # 화살표 없이 단순하게 배치 - 박스 크기 확대
     cols = st.columns(7)
     for i, (icon, title, desc) in enumerate(process_steps):
         with cols[i]:
             st.markdown(f"""
-            <div style="text-align: center; padding: 15px; border: 2px solid #f0f2f6; border-radius: 10px; height: 120px; display: flex; flex-direction: column; justify-content: center;">
+            <div style="text-align: center; padding: 20px 10px; border: 2px solid #f0f2f6; border-radius: 10px; height: 140px; display: flex; flex-direction: column; justify-content: center; min-width: 120px;">
                 <div style="font-size: 24px;">{icon}</div>
-                <div style="font-weight: bold; font-size: 12px; margin: 5px 0;">{title}</div>
-                <div style="font-size: 10px; color: #666;">{desc}</div>
+                <div style="font-weight: bold; font-size: 12px; margin: 8px 0; line-height: 1.3;">{title}</div>
+                <div style="font-size: 10px; color: #666; line-height: 1.4; word-break: keep-all;">{desc}</div>
             </div>
             """, unsafe_allow_html=True)
     
