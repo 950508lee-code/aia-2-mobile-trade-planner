@@ -59,7 +59,7 @@ def main():
     """, unsafe_allow_html=True)
     
     # 구분선 - 로고 바로 아래
-    st.markdown("<hr style='margin: 5px 0 10px 0; border: 1px solid #e0e0e0;'>", unsafe_allow_html=True)
+    st.markdown("<hr style='margin: 5px 0 5px 0; border: 1px solid #e0e0e0;'>", unsafe_allow_html=True)
     
     # 2줄로 배치된 탭 메뉴 (5+4 구성)
     tab_names = ["🎯 시작하기", "👥 투자상담매니저", "🎯 투자성향분석결과", "📊 시장전략가", "💰 자산배분전문가", "🔍 산업리서처", "📈 종목분석가", "🏆 포트폴리오전략가", "⚡매매전략가"]
@@ -73,7 +73,7 @@ def main():
         min-height: 28px !important;
         max-height: 28px !important;
         padding: 2px 4px !important;
-        margin: 1px 0 !important;
+        margin: 0 !important;
         font-size: 9px !important;
         font-weight: 500 !important;
         border-radius: 6px !important;
@@ -93,6 +93,11 @@ def main():
         color: white !important;
         border-color: #007bff !important;
     }
+    
+    /* 컬럼 간격 제거 */
+    .stColumns {
+        gap: 3px !important;
+    }
     </style>
     """, unsafe_allow_html=True)
     
@@ -105,7 +110,8 @@ def main():
                 st.session_state.current_step = i
                 st.rerun()
     
-    # 두 번째 줄 (4개 + 빈 공간)
+    # 두 번째 줄 (4개 + 빈 공간) - 위아래 간격 최소화
+    st.markdown("<div style='margin: -10px 0 -5px 0;'>", unsafe_allow_html=True)
     cols2 = st.columns(5)
     for i in range(4):
         tab_index = i + 5
@@ -115,6 +121,9 @@ def main():
                 st.session_state.current_step = tab_index
                 st.rerun()
     # 마지막 컬럼은 비워둠
+    st.markdown("</div>", unsafe_allow_html=True)
+    
+    st.markdown("<div style='margin-bottom: 15px;'></div>", unsafe_allow_html=True)
     
     st.markdown("<br>", unsafe_allow_html=True)
     
@@ -398,13 +407,13 @@ def tab_intro():
     st.markdown("### 🔄 **투자 의사결정 프로세스**")
     
     process_steps = [
-        ("👥", "투자 프로필링", "성향·목표·자금 분석"),
-        ("📊", "시장환경 진단", "경제 시나리오 설정"),
-        ("💰", "자산배분 설계", "리스크 최적화"),
-        ("🔍", "산업 발굴", "성장동력 분석"),
-        ("📈", "종목 선별", "개별 기업 분석"),
-        ("🏆", "포트폴리오 확정", "전략 완성"),
-        ("⚡", "매매 계획", "타이밍 설정")
+        ("👥", "투자 프로필링", "성향분석"),
+        ("📊", "시장환경 진단", "시나리오설정"),
+        ("💰", "자산배분 설계", "리스크최적화"),
+        ("🔍", "산업 발굴", "성장동력분석"),
+        ("📈", "종목 선별", "기업분석"),
+        ("🏆", "포트폴리오 확정", "전략완성"),
+        ("⚡", "매매 계획", "타이밍설정")
     ]
     
     # 화살표 없이 단순하게 배치
