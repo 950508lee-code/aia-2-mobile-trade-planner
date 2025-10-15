@@ -1293,24 +1293,21 @@ def tab_intro():
     # 특징들을 큰 카드로 표시
     features = [
         ("🎯", "개인 맞춤형", "투자자의 성향과 목표에<br>완벽히 맞춘 전략"),
-        ("⚡", "실시간 분석", "시장 변화를 즉시 반영한<br>동적 포트폴리오"),
         ("🛡️", "리스크 관리", "데이터 기반의 정교한<br>위험 통제 시스템"),
         ("📈", "성과 최적화", "AI 알고리즘이 찾아낸<br>수익 극대화 전략")
     ]
     
-    for i in range(0, len(features), 2):
-        cols = st.columns(2)
-        for j in range(2):
-            if i + j < len(features):
-                icon, title, desc = features[i + j]
-                with cols[j]:
-                    st.markdown(f"""
-                    <div style="text-align: center; padding: 25px 20px; border: 2px solid #e1e5e9; border-radius: 15px; height: 180px; display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); margin: 10px 0;">
-                        <div style="font-size: 3.5rem; margin-bottom: 15px;">{icon}</div>
-                        <div style="font-weight: bold; font-size: 1.5rem; margin: 10px 0; color: #2c3e50;">{title}</div>
-                        <div style="font-size: 1.2rem; color: #495057; line-height: 1.4;">{desc}</div>
-                    </div>
-                    """, unsafe_allow_html=True)
+    # 3개 카드를 한 줄에 배치
+    cols = st.columns(3)
+    for i, (icon, title, desc) in enumerate(features):
+        with cols[i]:
+            st.markdown(f"""
+            <div style="text-align: center; padding: 25px 20px; border: 2px solid #e1e5e9; border-radius: 15px; height: 180px; display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); margin: 10px 0;">
+                <div style="font-size: 3.5rem; margin-bottom: 15px;">{icon}</div>
+                <div style="font-weight: bold; font-size: 1.5rem; margin: 10px 0; color: #2c3e50;">{title}</div>
+                <div style="font-size: 1.2rem; color: #495057; line-height: 1.4;">{desc}</div>
+            </div>
+            """, unsafe_allow_html=True)
     
     st.markdown("<h2 style='font-size: 2rem; margin: 25px 0; color: #2c3e50; text-align: center;'>👥 <strong>7명의 AI 투자 전문가</strong></h2>", unsafe_allow_html=True)
     
