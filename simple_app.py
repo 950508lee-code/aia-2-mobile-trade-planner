@@ -42,32 +42,23 @@ def main():
     if 'current_step' not in st.session_state:
         st.session_state.current_step = 0
     
-    # 상단 로고 - 왼쪽 상단에 작게 배치
+    # 상단 로고 - 텍스트만 간단하게
     st.markdown("""
     <div style="
-        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-        padding: 12px 20px;
-        border-radius: 8px;
         text-align: left;
-        margin-bottom: 20px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        border: 1px solid rgba(255,255,255,0.1);
-        display: inline-block;
-        width: auto;
-        max-width: 320px;
+        margin-bottom: 15px;
+        padding: 5px 0;
     ">
         <h1 style="
-            color: white;
+            color: #2c3e50;
             margin: 0;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-            white-space: nowrap;
         ">🤖 딥시그널</h1>
         <p style="
-            color: rgba(255,255,255,0.85);
+            color: #7f8c8d;
             margin: 2px 0 0 0;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-weight: 400;
         ">AI Investment Agency</p>
     </div>
