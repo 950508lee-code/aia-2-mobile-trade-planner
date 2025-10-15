@@ -372,13 +372,21 @@ def tab_intro():
         """, unsafe_allow_html=True)
         
         if st.button("🎯 AI 투자 여정 시작하기", type="primary", use_container_width=True):
-            # 세션 상태로 탭 변경
-            st.session_state.current_tab = 1
-            st.success("✅ 투자상담매니저로 이동합니다!")
-            st.info("👆 위의 **👥 투자상담매니저** 탭을 클릭해주세요!")
+            st.success("✅ 투자 여정이 시작되었습니다!")
+            st.markdown("""
+            <div style="background: linear-gradient(90deg, #4CAF50 0%, #45a049 100%); padding: 20px; border-radius: 10px; text-align: center; color: white; margin: 20px 0; animation: pulse 2s infinite;">
+                <h3 style="margin: 0; color: white;">👆 위의 "👥 투자상담매니저" 탭을 클릭하세요! 👆</h3>
+                <p style="margin: 10px 0 0 0; font-size: 16px;">첫 번째 AI 전문가가 투자 프로필 분석을 시작합니다</p>
+            </div>
+            <style>
+            @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+                100% { transform: scale(1); }
+            }
+            </style>
+            """, unsafe_allow_html=True)
             st.balloons()
-            # 페이지 새로고침으로 탭 변경 반영
-            st.rerun()
 
 def tab_macro():
     """거시전략가 탭"""
