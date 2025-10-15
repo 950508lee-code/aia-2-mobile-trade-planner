@@ -55,23 +55,249 @@ def main():
         """)
     
     # 탭 네비게이션
-    tab_names = ["🎯 인트로", "📊 거시전략가", "💰 자산배분가", "🔍 섹터리서처", "📈 종목애널리스트", "🏆 CIO전략실", "⚡ Trade Planner"]
+    tab_names = ["🎯 인트로", "� 투자상담매니저", "�📊 거시전략가", "💰 자산배분가", "🔍 섹터리서처", "📈 종목애널리스트", "🏆 CIO전략실", "⚡ Trade Planner"]
     tabs = st.tabs(tab_names)
     
     with tabs[0]:
         tab_intro()
     with tabs[1]:
-        tab_macro()
+        tab_consultant()
     with tabs[2]:
-        tab_allocation()
+        tab_macro()
     with tabs[3]:
-        tab_sector()
+        tab_allocation()
     with tabs[4]:
-        tab_analyst()
+        tab_sector()
     with tabs[5]:
-        tab_cio()
+        tab_analyst()
     with tabs[6]:
+        tab_cio()
+    with tabs[7]:
         tab_trade_planner()
+
+def tab_consultant():
+    """투자상담매니저 탭"""
+    st.header("👥 투자상담매니저")
+    st.markdown("**맞춤형 투자 전략을 위한 투자자 프로필 분석**")
+    
+    # 상담 진행 상태
+    with st.expander("💼 투자 상담 진행 과정", expanded=True):
+        st.markdown("""
+        **🎯 상담 목표**: 투자자의 성향과 목표를 정확히 파악하여 최적의 투자 전략 수립
+        
+        **📋 상담 단계**:
+        1. 투자 가용 자금 확인
+        2. 투자 성향 및 리스크 허용도 분석  
+        3. 선호 투자 시장 및 자산 파악
+        4. 투자 목표 및 기간 설정
+        5. 맞춤형 투자 전략 방향 제시
+        """)
+    
+    # 투자자 기본 정보
+    st.markdown("### 💰 투자 가용 자금")
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        investment_amount = st.selectbox(
+            "총 투자 가능 자산", 
+            ["1천만원 미만", "1천만원 - 3천만원", "3천만원 - 5천만원", 
+             "5천만원 - 1억원", "1억원 - 3억원", "3억원 이상"],
+            index=2
+        )
+        
+        monthly_saving = st.selectbox(
+            "월 추가 투자 가능 금액",
+            ["없음", "50만원 미만", "50만원 - 100만원", 
+             "100만원 - 200만원", "200만원 - 500만원", "500만원 이상"],
+            index=2
+        )
+    
+    with col2:
+        emergency_fund = st.selectbox(
+            "비상 자금 준비 상태",
+            ["없음", "생활비 3개월분", "생활비 6개월분", 
+             "생활비 12개월분", "생활비 24개월분 이상"],
+            index=2
+        )
+        
+        debt_status = st.selectbox(
+            "부채 상황",
+            ["없음", "소액 (연소득 10% 미만)", "보통 (연소득 10-30%)", 
+             "많음 (연소득 30-50%)", "과다 (연소득 50% 이상)"],
+            index=1
+        )
+    
+    # 투자 성향 분석
+    st.markdown("### 📊 투자 성향 분석")
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        risk_tolerance = st.radio(
+            "투자 손실에 대한 허용도",
+            ["매우 보수적 (손실 절대 불가)", 
+             "보수적 (5% 이하 손실 허용)",
+             "중립적 (10-15% 손실 허용)", 
+             "적극적 (20-30% 손실 허용)",
+             "공격적 (30% 이상 손실도 감수)"],
+            index=2
+        )
+        
+        investment_knowledge = st.selectbox(
+            "투자 경험 및 지식 수준",
+            ["초보자 (예적금만 경험)", "초급자 (펀드 투자 경험)", 
+             "중급자 (주식 직접 투자)", "고급자 (파생상품 경험)", 
+             "전문가 (포트폴리오 운용)"],
+            index=1
+        )
+    
+    with col2:
+        investment_period = st.selectbox(
+            "투자 예상 기간",
+            ["6개월 이하", "6개월 - 1년", "1년 - 3년", 
+             "3년 - 5년", "5년 - 10년", "10년 이상"],
+            index=3
+        )
+        
+        investment_goal = st.selectbox(
+            "주요 투자 목적",
+            ["안전한 자산 보전", "인플레이션 대응", "목돈 마련 (결혼, 주택)",
+             "자녀 교육비", "노후 준비", "경제적 자유 달성"],
+            index=2
+        )
+    
+    # 선호 투자 시장
+    st.markdown("### 🌍 선호 투자 시장 및 자산")
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        preferred_market = st.multiselect(
+            "선호하는 투자 시장 (복수 선택 가능)",
+            ["국내 주식 (KOSPI, KOSDAQ)", "미국 주식 (S&P500, NASDAQ)", 
+             "선진국 주식 (유럽, 일본)", "신흥국 주식", 
+             "국내 채권", "해외 채권", "원자재 (금, 원유)", 
+             "부동산 (REITs)", "암호화폐"],
+            default=["국내 주식 (KOSPI, KOSDAQ)", "미국 주식 (S&P500, NASDAQ)"]
+        )
+        
+        sector_preference = st.multiselect(
+            "관심 있는 투자 섹터",
+            ["IT/반도체", "바이오/헬스케어", "금융", "에너지/화학",
+             "소비재", "자동차", "건설/부동산", "통신", "배터리/ESG"],
+            default=["IT/반도체", "바이오/헬스케어"]
+        )
+    
+    with col2:
+        trading_style = st.radio(
+            "선호하는 투자 스타일",
+            ["장기 보유 (Buy & Hold)", "정기 적립 투자 (DCA)", 
+             "시장 타이밍 투자", "단기 트레이딩", "혼합 스타일"],
+            index=1
+        )
+        
+        monitoring_frequency = st.selectbox(
+            "포트폴리오 점검 빈도",
+            ["매일", "주 1회", "월 1회", "분기별", "반기별", "연 1회"],
+            index=2
+        )
+    
+    # 투자 성향 분석 결과
+    st.markdown("### 🎯 투자자 프로필 분석 결과")
+    
+    # 간단한 점수 계산 로직
+    risk_scores = {"매우 보수적": 1, "보수적": 2, "중립적": 3, "적극적": 4, "공격적": 5}
+    knowledge_scores = {"초보자": 1, "초급자": 2, "중급자": 3, "고급자": 4, "전문가": 5}
+    period_scores = {"6개월 이하": 1, "6개월 - 1년": 2, "1년 - 3년": 3, 
+                    "3년 - 5년": 4, "5년 - 10년": 5, "10년 이상": 6}
+    
+    total_score = (risk_scores.get(risk_tolerance, 3) + 
+                  knowledge_scores.get(investment_knowledge, 2) + 
+                  period_scores.get(investment_period, 3)) / 3
+    
+    if total_score <= 2:
+        profile_type = "안전 추구형"
+        profile_color = "🔵"
+        recommended_allocation = {"주식": 30, "채권": 60, "현금": 10}
+    elif total_score <= 3.5:
+        profile_type = "균형 추구형"
+        profile_color = "🟡"
+        recommended_allocation = {"주식": 60, "채권": 30, "현금": 10}
+    else:
+        profile_type = "성장 추구형"
+        profile_color = "🔴"
+        recommended_allocation = {"주식": 80, "채권": 15, "현금": 5}
+    
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        st.metric("투자자 유형", f"{profile_color} {profile_type}")
+        st.write(f"**위험 허용도**: {risk_tolerance}")
+        st.write(f"**투자 지식**: {investment_knowledge}")
+    
+    with col2:
+        st.metric("투자 기간", investment_period)
+        st.write(f"**투자 목적**: {investment_goal}")
+        st.write(f"**투자 스타일**: {trading_style}")
+    
+    with col3:
+        st.metric("종합 점수", f"{total_score:.1f}/5.0")
+        st.write(f"**선호 시장**: {len(preferred_market)}개 시장")
+        st.write(f"**관심 섹터**: {len(sector_preference)}개 섹터")
+    
+    # 추천 자산 배분
+    st.markdown("### 📊 맞춤형 자산 배분 제안")
+    
+    fig = go.Figure(data=[go.Pie(
+        labels=list(recommended_allocation.keys()),
+        values=list(recommended_allocation.values()),
+        hole=0.4,
+        marker_colors=['#FF6B6B', '#4ECDC4', '#45B7D1']
+    )])
+    fig.update_layout(
+        title=f"{profile_type} 추천 자산 배분",
+        height=400
+    )
+    st.plotly_chart(fig)
+    
+    # 다음 단계 안내
+    st.markdown("### 🚀 다음 단계")
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        if st.button("📊 거시경제 분석 단계로", type="primary"):
+            st.success("✅ 투자자 프로필이 설정되었습니다!")
+            st.info("🔄 거시전략가 탭에서 현재 경제 환경을 분석하고 투자 전략을 수립해보세요.")
+    
+    with col2:
+        if st.button("🔄 프로필 다시 설정"):
+            st.experimental_rerun()
+    
+    # 상담 요약
+    with st.expander("📋 투자 상담 요약", expanded=False):
+        st.markdown(f"""
+        **👤 투자자 정보**
+        - 투자 가능 자산: {investment_amount}
+        - 월 추가 투자: {monthly_saving}
+        - 비상 자금: {emergency_fund}
+        
+        **🎯 투자 성향**
+        - 유형: {profile_color} {profile_type}
+        - 위험 허용도: {risk_tolerance}
+        - 투자 기간: {investment_period}
+        - 투자 목적: {investment_goal}
+        
+        **🌍 투자 선호**
+        - 선호 시장: {', '.join(preferred_market)}
+        - 관심 섹터: {', '.join(sector_preference)}
+        - 투자 스타일: {trading_style}
+        
+        **💡 추천 방향**
+        - 주식 비중: {recommended_allocation['주식']}%
+        - 채권 비중: {recommended_allocation['채권']}%
+        - 현금 비중: {recommended_allocation['현금']}%
+        """)
 
 def tab_intro():
     """인트로 탭"""
@@ -86,15 +312,16 @@ def tab_intro():
         **AIA 2.0**는 AI 역할 기반 투자 의사결정 플랫폼으로, 
         전문 투자팀의 역할을 AI가 수행하여 체계적인 투자 전략을 제공합니다.
         
-        ### 📋 7단계 투자 프로세스
+        ### 📋 8단계 투자 프로세스
         
-        1. **🎯 인트로**: 플랫폼 소개 및 투자자 프로필 설정
-        2. **📊 거시전략가**: 경제 환경 분석 및 시장 전망
-        3. **💰 자산배분가**: 리스크 성향별 포트폴리오 구성
-        4. **🔍 섹터리서처**: 유망 섹터 및 테마 선별
-        5. **📈 종목애널리스트**: 개별 종목 분석 및 추천
-        6. **🏆 CIO전략실**: 최종 포트폴리오 확정
-        7. **⚡ Trade Planner**: 모멘텀+RSI 기반 매매 전략
+        1. **🎯 인트로**: 플랫폼 소개 및 개요
+        2. **👥 투자상담매니저**: 투자성향 분석 및 맞춤형 프로필 설정
+        3. **📊 거시전략가**: 경제 환경 분석 및 시장 전망
+        4. **💰 자산배분가**: 리스크 성향별 포트폴리오 구성
+        5. **🔍 섹터리서처**: 유망 섹터 및 테마 선별
+        6. **📈 종목애널리스트**: 개별 종목 분석 및 추천
+        7. **🏆 CIO전략실**: 최종 포트폴리오 확정
+        8. **⚡ Trade Planner**: 모멘텀+RSI 기반 매매 전략
         """)
     
     with col2:
@@ -121,55 +348,135 @@ def tab_intro():
     # 시작하기 버튼
     st.markdown("---")
     if st.button("🚀 투자 여정 시작하기", type="primary"):
-        st.success("✅ 거시전략가 탭으로 이동하여 투자를 시작해보세요!")
+        st.success("✅ 투자상담매니저 탭으로 이동하여 맞춤형 투자 상담을 시작해보세요!")
+        st.info("💡 투자상담매니저가 귀하의 투자성향과 목표를 파악하여 최적의 전략을 제안해드립니다.")
 
 def tab_macro():
     """거시전략가 탭"""
     st.header("📊 거시전략가")
     st.markdown("**글로벌 경제 환경 분석 및 투자 전략 수립**")
     
-    # 투자자 프로필 설정
-    with st.expander("👤 투자자 프로필 설정", expanded=True):
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            investment_amount = st.slider("투자 가능 자산 (만원)", 100, 10000, 3000, 100)
-            risk_level = st.selectbox("투자 성향", ["안전형", "안정형", "중립형", "적극형", "공격형"])
+    # 현재 거시경제 지표
+    st.markdown("### 🌍 주요 거시경제 지표")
+    
+    col1, col2, col3, col4 = st.columns(4)
+    
+    with col1:
+        st.metric("미국 기준금리", "5.25%", "-0.25%")
+        st.metric("한국 기준금리", "3.50%", "0.00%")
+    
+    with col2:
+        st.metric("미국 CPI", "3.2%", "-0.3%")
+        st.metric("한국 CPI", "3.1%", "+0.1%")
+    
+    with col3:
+        st.metric("달러/원 환율", "1,320원", "+15원")
+        st.metric("WTI 유가", "$87.5", "+$2.3")
+    
+    with col4:
+        st.metric("VIX 공포지수", "18.5", "-2.1")
+        st.metric("미국 10년 국채", "4.6%", "+0.1%")
+    
+    # 거시 환경 시나리오 분석
+    st.markdown("### 📈 거시 환경 시나리오 분석")
+    
+    scenarios = {
+        "� 소프트랜딩 시나리오 (확률 40%)": {
+            "description": "인플레이션 안정화, 경기 둔화 없이 금리 정상화",
+            "implications": "성장주 회복, 기술주 선호, 장기 채권 매력도 증가",
+            "recommended_assets": {"성장주": 45, "가치주": 25, "채권": 20, "현금": 10}
+        },
+        "� 경기둔화 시나리오 (확률 35%)": {
+            "description": "고금리 지속으로 경기 둔화, 기업 실적 부진",
+            "implications": "방어주 선호, 배당주 매력, 단기 채권 비중 확대",
+            "recommended_assets": {"방어주": 35, "배당주": 30, "채권": 25, "현금": 10}
+        },
+        "🔴 재인플레이션 시나리오 (확률 25%)": {
+            "description": "인플레이션 재상승, 추가 금리 인상 압력",
+            "implications": "실물자산 선호, 에너지/원자재 투자, 변동금리 채권",
+            "recommended_assets": {"원자재": 30, "에너지": 25, "실물자산": 25, "현금": 20}
+        }
+    }
+    
+    selected_scenario = st.selectbox(
+        "투자 전략의 기준이 될 거시 시나리오를 선택하세요:",
+        list(scenarios.keys())
+    )
+    
+    scenario_data = scenarios[selected_scenario]
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown(f"**📝 시나리오 설명**")
+        st.write(scenario_data["description"])
+        st.markdown(f"**💡 투자 시사점**")
+        st.write(scenario_data["implications"])
+    
+    with col2:
+        # 시나리오별 추천 자산배분 시각화
+        fig = go.Figure(data=[go.Pie(
+            labels=list(scenario_data["recommended_assets"].keys()),
+            values=list(scenario_data["recommended_assets"].values()),
+            hole=0.4
+        )])
+        fig.update_layout(title=f"시나리오별 추천 자산배분")
+        st.plotly_chart(fig)
+    
+    # 지역별 시장 전망
+    st.markdown("### 🌏 지역별 시장 전망")
+    
+    market_outlook = {
+        "🇺🇸 미국": {"outlook": "중립", "score": 75, "reason": "기업실적 견조하나 밸류에이션 부담"},
+        "🇰🇷 한국": {"outlook": "긍정", "score": 80, "reason": "반도체 업사이클, 저평가 매력"},
+        "🇨🇳 중국": {"outlook": "신중", "score": 45, "reason": "부동산 리스크, 정책 불확실성"},
+        "🇪🇺 유럽": {"outlook": "중립", "score": 60, "reason": "에너지 안정화, 경기 회복 지연"},
+        "🌏 신흥국": {"outlook": "긍정", "score": 70, "reason": "달러 약세 기대, 원자재 수혜"}
+    }
+    
+    for region, data in market_outlook.items():
+        with st.expander(f"{region} 시장 전망", expanded=False):
+            col1, col2 = st.columns(2)
             
-        with col2:
-            investment_period = st.selectbox("투자 기간", ["1년 이하", "1-3년", "3-5년", "5년 이상"])
-            market_preference = st.selectbox("선호 시장", ["국내", "해외", "혼합"])
+            with col1:
+                if data["score"] >= 70:
+                    outlook_color = "🟢"
+                elif data["score"] >= 50:
+                    outlook_color = "🟡"
+                else:
+                    outlook_color = "🔴"
+                
+                st.metric("투자 매력도", f"{data['score']}/100")
+                st.write(f"**전망**: {outlook_color} {data['outlook']}")
+                st.write(f"**근거**: {data['reason']}")
+            
+            with col2:
+                # 가격 차트 시뮬레이션
+                days = pd.date_range('2024-01-01', periods=50, freq='D')
+                trend = 1 if data["score"] > 60 else -1 if data["score"] < 50 else 0
+                prices = 100 + np.cumsum(np.random.normal(trend*0.3, 1.5, 50))
+                
+                fig = px.line(x=days, y=prices, title=f"{region} 시장 추이")
+                fig.update_layout(height=250, margin=dict(l=0, r=0, t=30, b=0))
+                st.plotly_chart(fig)
     
-    # 거시 분석
-    st.markdown("### 🌍 현재 거시 환경 분석")
+    # 투자 전략 결론
+    st.markdown("### 🎯 거시전략가 결론")
     
-    macro_scenarios = [
-        "📈 경기 회복 시나리오 - 금리 안정화, 성장주 선호",
-        "⚖️ 균형 성장 시나리오 - 적절한 분산투자, 밸류+그로스",
-        "📉 경기 둔화 시나리오 - 방어적 투자, 배당주/채권 비중 확대"
-    ]
-    
-    selected_scenario = st.radio("선택할 거시 시나리오:", macro_scenarios)
-    
-    # 시나리오별 추천
-    if "회복" in selected_scenario:
-        st.success("🚀 성장주 위주의 공격적 포트폴리오를 추천합니다.")
-        recommended_allocation = {"주식": 70, "채권": 20, "현금": 10}
+    if "소프트랜딩" in selected_scenario:
+        st.success("🚀 위험자산 확대 전략: 성장주와 기술주 중심의 공격적 포트폴리오")
+        strategy_recommendation = "성장주 위주 적극 투자"
     elif "둔화" in selected_scenario:
-        st.warning("🛡️ 방어적 자산 비중을 늘린 안정적 포트폴리오를 추천합니다.")
-        recommended_allocation = {"주식": 40, "채권": 40, "현금": 20}
+        st.warning("🛡️ 방어적 자산배분: 배당주와 채권 중심의 안정적 포트폴리오")
+        strategy_recommendation = "방어주 위주 안정 투자"
     else:
-        st.info("⚖️ 균형잡힌 분산 포트폴리오를 추천합니다.")
-        recommended_allocation = {"주식": 60, "채권": 30, "현금": 10}
+        st.error("⚠️ 인플레이션 헤지: 실물자산과 원자재 중심의 인플레이션 대응 포트폴리오")
+        strategy_recommendation = "실물자산 위주 헤지 투자"
     
-    # 추천 자산배분 시각화
-    fig = go.Figure(data=[go.Pie(
-        labels=list(recommended_allocation.keys()),
-        values=list(recommended_allocation.values()),
-        hole=0.4
-    )])
-    fig.update_layout(title="거시 환경 기반 추천 자산배분")
-    st.plotly_chart(fig)
+    # 다음 단계 안내
+    if st.button("💰 자산배분 최적화 단계로", type="primary"):
+        st.success("✅ 거시 환경 분석이 완료되었습니다!")
+        st.info(f"🔄 자산배분가 탭에서 '{strategy_recommendation}' 전략을 바탕으로 구체적인 포트폴리오를 구성해보세요.")
 
 def tab_allocation():
     """자산배분가 탭"""
