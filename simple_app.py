@@ -42,24 +42,15 @@ def main():
     if 'current_step' not in st.session_state:
         st.session_state.current_step = 0
     
-    # 상단 로고 - 헤더처럼 바짝 붙임
+    # 상단 로고 - 모바일 우선 설계
     st.markdown("""
-    <div style="
-        text-align: left;
-        margin: 0;
-        padding: 0;
-    ">
-        <h1 style="
-            color: #2c3e50;
-            margin: 0;
-            font-size: 0.9rem;
-            font-weight: 600;
-        ">🤖 딥시그널 <span style="color: #7f8c8d; font-weight: 400;">(AI Investment Agency)</span></h1>
+    <div class="logo-text">
+        🤖 딥시그널 <span style="color: #7f8c8d; font-weight: 400;">(AI Investment Agency)</span>
     </div>
     """, unsafe_allow_html=True)
     
-    # 구분선 - 로고 바로 아래
-    st.markdown("<hr style='margin: 5px 0 5px 0; border: 1px solid #e0e0e0;'>", unsafe_allow_html=True)
+    # 구분선
+    st.markdown("<hr>", unsafe_allow_html=True)
     
     # 시작하기 버튼 (현재 탭이 시작하기가 아닐 때만 표시)
     if st.session_state.current_step != 0:
@@ -72,33 +63,29 @@ def main():
     # 2줄로 배치된 탭 메뉴 (시작하기 제외, 4+4 구성)
     tab_names = ["👥 투자상담매니저", "🎯 투자성향분석결과", "📊 시장전략가", "💰 자산배분전문가", "🔍 산업리서처", "📈 종목분석가", "🏆 포트폴리오전략가", "⚡매매전략가"]
     
-    # CSS 스타일 - 모바일 최적화
+    # 전역 모바일 우선 CSS 스타일
     st.markdown("""
     <style>
-    /* 모바일 반응형 스타일 */
-    @media (max-width: 768px) {
-        .stButton > button {
-            font-size: 8px !important;
-            height: 32px !important;
-            min-height: 32px !important;
-            max-height: 32px !important;
-            padding: 2px 3px !important;
-        }
-        .stColumns {
-            gap: 2px !important;
-        }
+    /* 전체 컨테이너 최적화 */
+    .main .block-container {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        max-width: 100% !important;
     }
     
+    /* 모든 버튼 통일 스타일 */
     .stButton > button {
         width: 100% !important;
-        height: 28px !important;
-        min-height: 28px !important;
-        max-height: 28px !important;
-        padding: 2px 4px !important;
-        margin: 0 !important;
-        font-size: 9px !important;
-        font-weight: 500 !important;
-        border-radius: 6px !important;
+        height: 35px !important;
+        min-height: 35px !important;
+        max-height: 35px !important;
+        padding: 4px 6px !important;
+        margin: 1px 0 !important;
+        font-size: 10px !important;
+        font-weight: 600 !important;
+        border-radius: 8px !important;
         border: 1px solid #ddd !important;
         background-color: #f8f9fa !important;
         color: #495057 !important;
@@ -106,57 +93,95 @@ def main():
         align-items: center !important;
         justify-content: center !important;
         text-align: center !important;
-        line-height: 1.1 !important;
+        line-height: 1.2 !important;
         box-sizing: border-box !important;
         white-space: nowrap !important;
         overflow: hidden !important;
         text-overflow: ellipsis !important;
+        transition: all 0.2s ease !important;
     }
     
     .stButton > button[kind="primary"] {
         background-color: #007bff !important;
         color: white !important;
         border-color: #007bff !important;
+        font-weight: 700 !important;
     }
     
-    /* 컬럼 간격 최소화 */
+    .stButton > button:hover {
+        transform: translateY(-1px) !important;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+    }
+    
+    /* 컬럼 간격 최적화 */
     .stColumns {
-        gap: 3px !important;
+        gap: 4px !important;
     }
     
-    /* 컨테이너 최적화 */
-    .block-container {
-        padding-top: 1rem !important;
-        padding-bottom: 1rem !important;
+    /* 로고 스타일 개선 */
+    .logo-text {
+        font-size: 0.9rem !important;
+        font-weight: 600 !important;
+        color: #2c3e50 !important;
+        margin: 0 !important;
+        padding: 3px 0 !important;
+    }
+    
+    /* 구분선 스타일 */
+    hr {
+        margin: 8px 0 !important;
+        border: 0.5px solid #e0e0e0 !important;
+    }
+    
+    /* 헤더 텍스트 최적화 */
+    .header-text {
+        font-size: 1rem !important;
+        line-height: 1.3 !important;
+        margin: 0 !important;
+        padding: 8px 0 !important;
+    }
+    
+    /* 반응형 그리드 */
+    @media (min-width: 768px) {
+        .main .block-container {
+            padding-left: 2rem !important;
+            padding-right: 2rem !important;
+        }
     }
     </style>
     """, unsafe_allow_html=True)
     
-    # 첫 번째 줄 (4개) - 모바일 최적화
-    st.markdown('<div style="margin-bottom: 3px;">', unsafe_allow_html=True)
+    # 시작하기 버튼 (다른 탭에서만 표시)
+    if st.session_state.current_step != 0:
+        home_col1, home_col2, home_col3 = st.columns([1, 2, 1])
+        with home_col2:
+            if st.button("🎯 시작하기", key="home_tab", use_container_width=True, type="secondary"):
+                st.session_state.current_step = 0
+                st.rerun()
+        st.markdown("<div style='margin: 5px 0;'></div>", unsafe_allow_html=True)
+    
+    # 탭 메뉴 (4+4 구성)
+    tab_names = ["👥 투자상담매니저", "🎯 투자성향분석결과", "📊 시장전략가", "💰 자산배분전문가", "🔍 산업리서처", "📈 종목분석가", "🏆 포트폴리오전략가", "⚡매매전략가"]
+    
+    # 첫 번째 줄 (4개)
     cols1 = st.columns(4)
     for i in range(4):
         with cols1[i]:
-            # 실제 탭 인덱스는 i+1 (시작하기=0 제외)
             tab_index = i + 1
             button_type = "primary" if tab_index == st.session_state.current_step else "secondary"
             if st.button(tab_names[i], key=f"tab_{tab_index}", use_container_width=True, type=button_type):
                 st.session_state.current_step = tab_index
                 st.rerun()
-    st.markdown('</div>', unsafe_allow_html=True)
     
-    # 두 번째 줄 (4개) - 모바일 최적화
-    st.markdown('<div style="margin-bottom: 10px;">', unsafe_allow_html=True)
+    # 두 번째 줄 (4개)
     cols2 = st.columns(4)
     for i in range(4):
-        # 실제 탭 인덱스는 i+5 (시작하기=0 제외)
-        tab_index = i + 5
         with cols2[i]:
+            tab_index = i + 5
             button_type = "primary" if tab_index == st.session_state.current_step else "secondary"
             if st.button(tab_names[i+4], key=f"tab_{tab_index}", use_container_width=True, type=button_type):
                 st.session_state.current_step = tab_index
                 st.rerun()
-    st.markdown('</div>', unsafe_allow_html=True)
     
     st.markdown("<br>", unsafe_allow_html=True)
     
