@@ -413,36 +413,22 @@ def main():
     
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # 단계별 렌더링 (15단계로 확장)
+    # 단계별 렌더링 (8단계로 단순화)
     if st.session_state.current_step == 0:
-        tab_ai_intro()  # AI 소개
+        tab_intro()       # 통합 소개 (모든 AI 전문가 소개 포함)
     elif st.session_state.current_step == 1:
-        tab_investment_manager_intro()   # 투자상담매니저 소개
+        tab_process()     # 프로세스 소개
     elif st.session_state.current_step == 2:
-        tab_market_strategist_intro()    # 시장전략가 소개
+        tab_start()       # 시작하기
     elif st.session_state.current_step == 3:
-        tab_asset_allocator_intro()      # 자산배분전문가 소개
-    elif st.session_state.current_step == 4:
-        tab_industry_researcher_intro()  # 산업리서처 소개
-    elif st.session_state.current_step == 5:
-        tab_stock_analyst_intro()        # 종목분석가 소개
-    elif st.session_state.current_step == 6:
-        tab_portfolio_strategist_intro() # 포트폴리오전략가 소개
-    elif st.session_state.current_step == 7:
-        tab_trading_strategist_intro()   # 매매전략가 소개
-    elif st.session_state.current_step == 8:
-        tab_process()   # 프로세스 소개
-    elif st.session_state.current_step == 9:
-        tab_start()     # 시작하기
-    elif st.session_state.current_step == 10:
         tab_consultant()  # 투자상담매니저 실제 상담
-    elif st.session_state.current_step == 11:
+    elif st.session_state.current_step == 4:
         tab_macro()       # 시장전략가 분석
-    elif st.session_state.current_step == 12:
+    elif st.session_state.current_step == 5:
         tab_allocation()  # 자산배분전문가 분석
-    elif st.session_state.current_step == 13:
+    elif st.session_state.current_step == 6:
         tab_sector()      # 산업리서처 분석
-    elif st.session_state.current_step == 14:
+    elif st.session_state.current_step == 7:
         tab_ticker()      # 종목분석가 분석
     
     # 하단 네비게이션 버튼
@@ -456,7 +442,7 @@ def main():
                 st.rerun()
     
     with nav_col3:
-        if st.session_state.current_step < 14:  # 15단계이므로 14가 마지막
+        if st.session_state.current_step < 7:  # 8단계이므로 7이 마지막
             if st.button("다음 ➡️", use_container_width=True, type="primary"):
                 st.session_state.current_step += 1
                 st.rerun()
@@ -464,13 +450,11 @@ def main():
     with nav_col2:
         # 현재 단계 표시
         step_names = [
-            "🤖 AI 소개", "👥 투자상담매니저", "📊 시장전략가", "💰 자산배분전문가", 
-            "🔍 산업리서처", "📈 종목분석가", "🏆 포트폴리오전략가", "⚡ 매매전략가",
-            "📋 프로세스", "🎯 시작하기", "🤝 상담시작", "🌍 시장분석", 
-            "🎯 자산배분", "🏭 산업분석", "📈 종목선정"
+            "🤖 AI 소개", "� 프로세스", "🎯 시작하기", "� 투자상담", 
+            "� 시장분석", "💰 자산배분", "🔍 산업분석", "📈 종목선정"
         ]
         current_step_name = step_names[st.session_state.current_step]
-        st.markdown(f"<div style='text-align: center; color: #666; font-size: 0.9rem; padding: 10px;'>{current_step_name}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div style='text-align: center; color: #666; font-size: 1.1rem; padding: 10px;'>{current_step_name}</div>", unsafe_allow_html=True)
     
 
 
@@ -1293,18 +1277,18 @@ def tab_trade_planner():
         - 장기 모멘텀과 단기 RSI의 조화로운 매매 타이밍 포착
         """)
 
-def tab_ai_intro():
-    """AI 소개 탭 - 모바일 최적화"""
+def tab_intro():
+    """통합 AI 소개 탭 - 모든 전문가 소개 통합"""
     
-    # 메인 비전 - 큰 글씨로 모바일 친화적
+    # 메인 비전 - 모바일 친화적 큰 글씨
     st.markdown("""
-    <div style="text-align: center; padding: 25px 15px; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); border-radius: 12px; color: white; margin: 20px 0;">
-        <h1 style="font-size: 2.2rem; margin: 10px 0; line-height: 1.4;">🤖 7명의 투자전문 AI</h1>
-        <p style="font-size: 1.4rem; margin: 15px 0; line-height: 1.5;">각 분야 전문가 AI가 순차적으로<br>최적의 투자 전략을 도출합니다</p>
+    <div style="text-align: center; padding: 30px 20px; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); border-radius: 15px; color: white; margin: 20px 0;">
+        <h1 style="font-size: 2.5rem; margin: 15px 0; line-height: 1.3;">🤖 7명의 투자전문 AI</h1>
+        <p style="font-size: 1.6rem; margin: 20px 0; line-height: 1.4;">각 분야 전문가 AI가 순차적으로<br>최적의 투자 전략을 도출합니다</p>
     </div>
     """, unsafe_allow_html=True)
     
-    st.markdown("<h2 style='font-size: 1.8rem; margin: 20px 0; color: #2c3e50;'>✨ <strong>AI 투자 자문의 특별함</strong></h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='font-size: 2rem; margin: 25px 0; color: #2c3e50; text-align: center;'>✨ <strong>AI 투자 자문의 특별함</strong></h2>", unsafe_allow_html=True)
     
     # 특징들을 큰 카드로 표시
     features = [
@@ -1321,15 +1305,41 @@ def tab_ai_intro():
                 icon, title, desc = features[i + j]
                 with cols[j]:
                     st.markdown(f"""
-                    <div style="text-align: center; padding: 20px 15px; border: 2px solid #e1e5e9; border-radius: 15px; height: 160px; display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); margin: 8px 0;">
-                        <div style="font-size: 3rem; margin-bottom: 10px;">{icon}</div>
-                        <div style="font-weight: bold; font-size: 1.3rem; margin: 8px 0; color: #2c3e50;">{title}</div>
-                        <div style="font-size: 1.1rem; color: #495057; line-height: 1.4;">{desc}</div>
+                    <div style="text-align: center; padding: 25px 20px; border: 2px solid #e1e5e9; border-radius: 15px; height: 180px; display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); margin: 10px 0;">
+                        <div style="font-size: 3.5rem; margin-bottom: 15px;">{icon}</div>
+                        <div style="font-weight: bold; font-size: 1.5rem; margin: 10px 0; color: #2c3e50;">{title}</div>
+                        <div style="font-size: 1.2rem; color: #495057; line-height: 1.4;">{desc}</div>
                     </div>
                     """, unsafe_allow_html=True)
     
+    st.markdown("<h2 style='font-size: 2rem; margin: 25px 0; color: #2c3e50; text-align: center;'>👥 <strong>7명의 AI 투자 전문가</strong></h2>", unsafe_allow_html=True)
+    
+    # 7명의 AI 전문가 소개
+    experts = [
+        ("👥", "투자상담매니저", "투자자 성향·목표·자금 분석", "#28a745"),
+        ("📊", "시장전략가", "글로벌 경제환경 진단·전망", "#007bff"),
+        ("💰", "자산배분전문가", "리스크별 포트폴리오 설계", "#ffc107"),
+        ("🔍", "산업리서처", "성장산업 발굴·동력 분석", "#6f42c1"),
+        ("📈", "종목분석가", "개별 기업 심층분석·선별", "#dc3545"),
+        ("🏆", "포트폴리오전략가", "최종 전략 확정·리스크관리", "#17a2b8"),
+        ("⚡", "매매전략가", "최적 타이밍·포지션 관리", "#fd7e14")
+    ]
+    
+    # 전문가들을 2줄로 배치 (모바일 친화적)
+    for row in [experts[:4], experts[4:]]:
+        cols = st.columns(len(row))
+        for i, (icon, title, desc, color) in enumerate(row):
+            with cols[i]:
+                st.markdown(f"""
+                <div style="text-align: center; padding: 25px 15px; border: 2px solid {color}; border-radius: 12px; height: 170px; display: flex; flex-direction: column; justify-content: center; background: white; margin: 8px 0; position: relative;">
+                    <div style="font-size: 3rem; margin: 10px 0;">{icon}</div>
+                    <div style="font-weight: bold; font-size: 1.2rem; margin: 8px 0; color: {color}; line-height: 1.2;">{title}</div>
+                    <div style="font-size: 1rem; color: #666; line-height: 1.3;">{desc}</div>
+                </div>
+                """, unsafe_allow_html=True)
+    
     # 다음 단계 버튼
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br><br>", unsafe_allow_html=True)
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
         if st.button("📋 투자 프로세스 보기", type="primary", use_container_width=True):
@@ -1427,230 +1437,6 @@ def tab_start():
             st.session_state.current_step = 3
             st.success("👥 투자상담매니저가 여러분을 맞이합니다!")
             st.rerun()
-
-def tab_investment_manager_intro():
-    """투자상담매니저 소개 탭"""
-    st.markdown("""
-    <div style="text-align: center; padding: 25px 15px; background: linear-gradient(90deg, #28a745 0%, #20c997 100%); border-radius: 12px; color: white; margin: 20px 0;">
-        <h1 style="font-size: 2.2rem; margin: 10px 0; line-height: 1.4;">👥 투자상담매니저</h1>
-        <p style="font-size: 1.4rem; margin: 15px 0; line-height: 1.5;">투자자의 성향과 목표를<br>정확히 파악하는 전문가</p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    st.markdown("<h2 style='font-size: 1.8rem; margin: 20px 0; color: #2c3e50;'>💼 <strong>주요 역할</strong></h2>", unsafe_allow_html=True)
-    
-    roles = [
-        ("📋", "투자 성향 분석", "위험 감내도와 투자 스타일을<br>정확히 진단합니다"),
-        ("🎯", "목표 설정", "투자 기간과 수익 목표를<br>명확히 정의합니다"),
-        ("💰", "자금 계획", "가용 자금과 투자 규모를<br>체계적으로 분석합니다"),
-        ("🤖", "AI 전략 매칭", "개인에게 최적화된<br>AI 투자 전략을 제안합니다")
-    ]
-    
-    for i in range(0, len(roles), 2):
-        cols = st.columns(2)
-        for j in range(2):
-            if i + j < len(roles):
-                icon, title, desc = roles[i + j]
-                with cols[j]:
-                    st.markdown(f"""
-                    <div style="text-align: center; padding: 20px 15px; border: 2px solid #28a745; border-radius: 15px; height: 160px; display: flex; flex-direction: column; justify-content: center; background: #f8fff9; margin: 8px 0;">
-                        <div style="font-size: 3rem; margin-bottom: 10px;">{icon}</div>
-                        <div style="font-weight: bold; font-size: 1.3rem; margin: 8px 0; color: #155724;">{title}</div>
-                        <div style="font-size: 1.1rem; color: #155724; line-height: 1.4;">{desc}</div>
-                    </div>
-                    """, unsafe_allow_html=True)
-
-def tab_market_strategist_intro():
-    """시장전략가 소개 탭"""
-    st.markdown("""
-    <div style="text-align: center; padding: 25px 15px; background: linear-gradient(90deg, #007bff 0%, #0056b3 100%); border-radius: 12px; color: white; margin: 20px 0;">
-        <h1 style="font-size: 2.2rem; margin: 10px 0; line-height: 1.4;">📊 시장전략가</h1>
-        <p style="font-size: 1.4rem; margin: 15px 0; line-height: 1.5;">글로벌 경제 환경을<br>분석하고 전망하는 전문가</p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    st.markdown("<h2 style='font-size: 1.8rem; margin: 20px 0; color: #2c3e50;'>🌍 <strong>분석 영역</strong></h2>", unsafe_allow_html=True)
-    
-    areas = [
-        ("💵", "통화정책", "각국 중앙은행의 금리 정책과<br>유동성 변화를 분석합니다"),
-        ("📈", "경제지표", "GDP, 인플레이션, 고용지표 등<br>핵심 경제 데이터를 해석합니다"),
-        ("🌐", "지정학적 리스크", "국제 정세와 무역 갈등이<br>시장에 미치는 영향을 평가합니다"),
-        ("⚡", "시장 모멘텀", "자금 흐름과 투자심리를<br>실시간으로 모니터링합니다")
-    ]
-    
-    for i in range(0, len(areas), 2):
-        cols = st.columns(2)
-        for j in range(2):
-            if i + j < len(areas):
-                icon, title, desc = areas[i + j]
-                with cols[j]:
-                    st.markdown(f"""
-                    <div style="text-align: center; padding: 20px 15px; border: 2px solid #007bff; border-radius: 15px; height: 160px; display: flex; flex-direction: column; justify-content: center; background: #f8f9ff; margin: 8px 0;">
-                        <div style="font-size: 3rem; margin-bottom: 10px;">{icon}</div>
-                        <div style="font-weight: bold; font-size: 1.3rem; margin: 8px 0; color: #004085;">{title}</div>
-                        <div style="font-size: 1.1rem; color: #004085; line-height: 1.4;">{desc}</div>
-                    </div>
-                    """, unsafe_allow_html=True)
-
-def tab_asset_allocator_intro():
-    """자산배분전문가 소개 탭"""
-    st.markdown("""
-    <div style="text-align: center; padding: 25px 15px; background: linear-gradient(90deg, #ffc107 0%, #ff8c00 100%); border-radius: 12px; color: white; margin: 20px 0;">
-        <h1 style="font-size: 2.2rem; margin: 10px 0; line-height: 1.4;">💰 자산배분전문가</h1>
-        <p style="font-size: 1.4rem; margin: 15px 0; line-height: 1.5;">최적의 포트폴리오를<br>설계하는 전문가</p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    st.markdown("<h2 style='font-size: 1.8rem; margin: 20px 0; color: #2c3e50;'>⚖️ <strong>배분 전략</strong></h2>", unsafe_allow_html=True)
-    
-    strategies = [
-        ("📊", "리스크 분산", "상관관계가 낮은 자산군으로<br>위험을 분산시킵니다"),
-        ("🎯", "수익률 최적화", "주어진 리스크 수준에서<br>최대 수익률을 추구합니다"),
-        ("🔄", "리밸런싱", "시장 변화에 따라<br>포트폴리오를 재조정합니다"),
-        ("🛡️", "다운사이드 보호", "하락장에서의 손실을<br>최소화하는 전략을 구사합니다")
-    ]
-    
-    for i in range(0, len(strategies), 2):
-        cols = st.columns(2)
-        for j in range(2):
-            if i + j < len(strategies):
-                icon, title, desc = strategies[i + j]
-                with cols[j]:
-                    st.markdown(f"""
-                    <div style="text-align: center; padding: 20px 15px; border: 2px solid #ffc107; border-radius: 15px; height: 160px; display: flex; flex-direction: column; justify-content: center; background: #fffdf5; margin: 8px 0;">
-                        <div style="font-size: 3rem; margin-bottom: 10px;">{icon}</div>
-                        <div style="font-weight: bold; font-size: 1.3rem; margin: 8px 0; color: #856404;">{title}</div>
-                        <div style="font-size: 1.1rem; color: #856404; line-height: 1.4;">{desc}</div>
-                    </div>
-                    """, unsafe_allow_html=True)
-
-def tab_industry_researcher_intro():
-    """산업리서처 소개 탭"""
-    st.markdown("""
-    <div style="text-align: center; padding: 25px 15px; background: linear-gradient(90deg, #6f42c1 0%, #563d7c 100%); border-radius: 12px; color: white; margin: 20px 0;">
-        <h1 style="font-size: 2.2rem; margin: 10px 0; line-height: 1.4;">🔍 산업리서처</h1>
-        <p style="font-size: 1.4rem; margin: 15px 0; line-height: 1.5;">미래 성장 산업을<br>발굴하는 전문가</p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    st.markdown("<h2 style='font-size: 1.8rem; margin: 20px 0; color: #2c3e50;'>🔬 <strong>연구 분야</strong></h2>", unsafe_allow_html=True)
-    
-    research_areas = [
-        ("🚀", "신성장 동력", "AI, 바이오, 신재생에너지 등<br>차세대 산업을 분석합니다"),
-        ("📱", "디지털 전환", "DX 트렌드와 관련<br>기업들의 성장성을 평가합니다"),
-        ("🌱", "ESG 투자", "지속가능한 경영과<br>사회적 가치를 중시합니다"),
-        ("🔄", "산업 사이클", "업종별 사이클과<br>구조적 변화를 추적합니다")
-    ]
-    
-    for i in range(0, len(research_areas), 2):
-        cols = st.columns(2)
-        for j in range(2):
-            if i + j < len(research_areas):
-                icon, title, desc = research_areas[i + j]
-                with cols[j]:
-                    st.markdown(f"""
-                    <div style="text-align: center; padding: 20px 15px; border: 2px solid #6f42c1; border-radius: 15px; height: 160px; display: flex; flex-direction: column; justify-content: center; background: #f8f7ff; margin: 8px 0;">
-                        <div style="font-size: 3rem; margin-bottom: 10px;">{icon}</div>
-                        <div style="font-weight: bold; font-size: 1.3rem; margin: 8px 0; color: #493361;">{title}</div>
-                        <div style="font-size: 1.1rem; color: #493361; line-height: 1.4;">{desc}</div>
-                    </div>
-                    """, unsafe_allow_html=True)
-
-def tab_stock_analyst_intro():
-    """종목분석가 소개 탭"""
-    st.markdown("""
-    <div style="text-align: center; padding: 25px 15px; background: linear-gradient(90deg, #dc3545 0%, #c82333 100%); border-radius: 12px; color: white; margin: 20px 0;">
-        <h1 style="font-size: 2.2rem; margin: 10px 0; line-height: 1.4;">📈 종목분석가</h1>
-        <p style="font-size: 1.4rem; margin: 15px 0; line-height: 1.5;">개별 기업을<br>심층 분석하는 전문가</p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    st.markdown("<h2 style='font-size: 1.8rem; margin: 20px 0; color: #2c3e50;'>🔍 <strong>분석 방법</strong></h2>", unsafe_allow_html=True)
-    
-    methods = [
-        ("💹", "재무 분석", "매출, 수익성, 안정성 등<br>재무제표를 정밀 분석합니다"),
-        ("🎯", "밸류에이션", "적정 주가와 투자 가치를<br>다각도로 평가합니다"),
-        ("🏢", "비즈니스 모델", "기업의 경쟁력과<br>성장 지속성을 검토합니다"),
-        ("📊", "기술적 분석", "차트와 모멘텀을 통해<br>최적 진입점을 찾습니다")
-    ]
-    
-    for i in range(0, len(methods), 2):
-        cols = st.columns(2)
-        for j in range(2):
-            if i + j < len(methods):
-                icon, title, desc = methods[i + j]
-                with cols[j]:
-                    st.markdown(f"""
-                    <div style="text-align: center; padding: 20px 15px; border: 2px solid #dc3545; border-radius: 15px; height: 160px; display: flex; flex-direction: column; justify-content: center; background: #fff5f5; margin: 8px 0;">
-                        <div style="font-size: 3rem; margin-bottom: 10px;">{icon}</div>
-                        <div style="font-weight: bold; font-size: 1.3rem; margin: 8px 0; color: #721c24;">{title}</div>
-                        <div style="font-size: 1.1rem; color: #721c24; line-height: 1.4;">{desc}</div>
-                    </div>
-                    """, unsafe_allow_html=True)
-
-def tab_portfolio_strategist_intro():
-    """포트폴리오전략가 소개 탭"""
-    st.markdown("""
-    <div style="text-align: center; padding: 25px 15px; background: linear-gradient(90deg, #17a2b8 0%, #138496 100%); border-radius: 12px; color: white; margin: 20px 0;">
-        <h1 style="font-size: 2.2rem; margin: 10px 0; line-height: 1.4;">🏆 포트폴리오전략가</h1>
-        <p style="font-size: 1.4rem; margin: 15px 0; line-height: 1.5;">최종 투자 전략을<br>완성하는 전문가</p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    st.markdown("<h2 style='font-size: 1.8rem; margin: 20px 0; color: #2c3e50;'>🎯 <strong>통합 전략</strong></h2>", unsafe_allow_html=True)
-    
-    integration = [
-        ("🧩", "종합 설계", "모든 분석 결과를 통합하여<br>완성된 포트폴리오를 구성합니다"),
-        ("⚖️", "리스크 관리", "전체 포트폴리오의<br>위험도를 최적화합니다"),
-        ("📋", "실행 계획", "구체적인 매수 계획과<br>비중 조절 방안을 제시합니다"),
-        ("📊", "성과 모니터링", "포트폴리오 성과를<br>지속적으로 추적 관리합니다")
-    ]
-    
-    for i in range(0, len(integration), 2):
-        cols = st.columns(2)
-        for j in range(2):
-            if i + j < len(integration):
-                icon, title, desc = integration[i + j]
-                with cols[j]:
-                    st.markdown(f"""
-                    <div style="text-align: center; padding: 20px 15px; border: 2px solid #17a2b8; border-radius: 15px; height: 160px; display: flex; flex-direction: column; justify-content: center; background: #f7fdff; margin: 8px 0;">
-                        <div style="font-size: 3rem; margin-bottom: 10px;">{icon}</div>
-                        <div style="font-weight: bold; font-size: 1.3rem; margin: 8px 0; color: #0c5460;">{title}</div>
-                        <div style="font-size: 1.1rem; color: #0c5460; line-height: 1.4;">{desc}</div>
-                    </div>
-                    """, unsafe_allow_html=True)
-
-def tab_trading_strategist_intro():
-    """매매전략가 소개 탭"""
-    st.markdown("""
-    <div style="text-align: center; padding: 25px 15px; background: linear-gradient(90deg, #fd7e14 0%, #e55a00 100%); border-radius: 12px; color: white; margin: 20px 0;">
-        <h1 style="font-size: 2.2rem; margin: 10px 0; line-height: 1.4;">⚡ 매매전략가</h1>
-        <p style="font-size: 1.4rem; margin: 15px 0; line-height: 1.5;">최적의 매매 타이밍을<br>포착하는 전문가</p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    st.markdown("<h2 style='font-size: 1.8rem; margin: 20px 0; color: #2c3e50;'>⏰ <strong>타이밍 전략</strong></h2>", unsafe_allow_html=True)
-    
-    timing = [
-        ("📈", "모멘텀 분석", "상승 추세와 하락 추세를<br>정확히 식별합니다"),
-        ("📊", "RSI 활용", "과매수/과매도 구간을<br>활용한 진입/청산 전략"),
-        ("🎯", "진입점 포착", "최적의 매수 타이밍을<br>포착합니다"),
-        ("🔄", "리밸런싱", "시장 상황에 따른<br>포지션 조정 전략")
-    ]
-    
-    for i in range(0, len(timing), 2):
-        cols = st.columns(2)
-        for j in range(2):
-            if i + j < len(timing):
-                icon, title, desc = timing[i + j]
-                with cols[j]:
-                    st.markdown(f"""
-                    <div style="text-align: center; padding: 20px 15px; border: 2px solid #fd7e14; border-radius: 15px; height: 160px; display: flex; flex-direction: column; justify-content: center; background: #fff8f0; margin: 8px 0;">
-                        <div style="font-size: 3rem; margin-bottom: 10px;">{icon}</div>
-                        <div style="font-weight: bold; font-size: 1.3rem; margin: 8px 0; color: #975a16;">{title}</div>
-                        <div style="font-size: 1.1rem; color: #975a16; line-height: 1.4;">{desc}</div>
-                    </div>
-                    """, unsafe_allow_html=True)
 
 def tab_ticker():
     """종목분석가 탭 - 임시"""
