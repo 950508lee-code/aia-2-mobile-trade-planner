@@ -64,40 +64,48 @@ def main():
     # 클릭 가능한 탭 메뉴
     tab_names = ["🎯 시작하기", "👥 투자상담매니저", "🎯 투자성향분석결과", "📊 시장전략가", "💰 자산배분전문가", "🔍 산업리서처", "📈 종목분석가", "🏆 포트폴리오전략가", "⚡매매전략가"]
     
-    # 탭 메뉴 스타일
+    # 탭 메뉴 스타일 - 강제로 크기 통일
     st.markdown("""
     <style>
-    .tab-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-        margin-bottom: 20px;
-        padding: 10px 0;
+    /* Streamlit 버튼 스타일 강제 오버라이드 */
+    div[data-testid="column"] > div > div > button {
+        width: 100% !important;
+        height: 35px !important;
+        min-height: 35px !important;
+        max-height: 35px !important;
+        padding: 4px 8px !important;
+        font-size: 9px !important;
+        font-weight: 500 !important;
+        border-radius: 12px !important;
+        border: 1px solid #e0e0e0 !important;
+        background-color: white !important;
+        color: #666 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        line-height: 1.2 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
     }
-    .tab-item {
-        padding: 6px 10px;
-        border-radius: 15px;
-        font-size: 10px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        border: 1px solid #e0e0e0;
-        background: white;
-        color: #666;
-        min-height: 32px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
+    
+    /* 활성 탭 스타일 */
+    div[data-testid="column"] > div > div > button[kind="primary"] {
+        background-color: #007bff !important;
+        color: white !important;
+        border-color: #007bff !important;
     }
-    .tab-item:hover {
-        background: #f8f9fa;
-        border-color: #007bff;
+    
+    /* 호버 효과 */
+    div[data-testid="column"] > div > div > button:hover {
+        background-color: #f8f9fa !important;
+        border-color: #007bff !important;
     }
-    .tab-item.active {
-        background: #007bff;
-        color: white;
-        border-color: #007bff;
+    
+    div[data-testid="column"] > div > div > button[kind="primary"]:hover {
+        background-color: #0056b3 !important;
+        border-color: #0056b3 !important;
     }
     </style>
     """, unsafe_allow_html=True)
