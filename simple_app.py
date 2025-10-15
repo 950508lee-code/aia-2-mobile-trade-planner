@@ -59,7 +59,55 @@ def main():
     """, unsafe_allow_html=True)
     
     # 구분선 - 로고 바로 아래
-    st.markdown("<hr style='margin: 5px 0 20px 0; border: 1px solid #e0e0e0;'>", unsafe_allow_html=True)
+    st.markdown("<hr style='margin: 5px 0 10px 0; border: 1px solid #e0e0e0;'>", unsafe_allow_html=True)
+    
+    # 클릭 가능한 탭 메뉴
+    tab_names = ["🎯 시작하기", "👥 투자상담매니저", "🎯 투자성향분석결과", "📊 시장전략가", "💰 자산배분전문가", "🔍 산업리서처", "📈 종목분석가", "🏆 포트폴리오전략가", "⚡매매전략가"]
+    
+    # 탭 메뉴 스타일
+    st.markdown("""
+    <style>
+    .tab-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 20px;
+        padding: 10px 0;
+    }
+    .tab-item {
+        padding: 8px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 1px solid #e0e0e0;
+        background: white;
+        color: #666;
+    }
+    .tab-item:hover {
+        background: #f8f9fa;
+        border-color: #007bff;
+    }
+    .tab-item.active {
+        background: #007bff;
+        color: white;
+        border-color: #007bff;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
+    # 탭 메뉴 버튼들
+    cols = st.columns(len(tab_names))
+    for i, tab_name in enumerate(tab_names):
+        with cols[i]:
+            # 현재 활성 탭 표시
+            button_type = "primary" if i == st.session_state.current_step else "secondary"
+            if st.button(tab_name, key=f"tab_{i}", use_container_width=True, type=button_type):
+                st.session_state.current_step = i
+                st.rerun()
+    
+    st.markdown("<br>", unsafe_allow_html=True)
     
     # 단계별 렌더링
     if st.session_state.current_step == 0:
@@ -81,26 +129,7 @@ def main():
     elif st.session_state.current_step == 8:
         tab_trade_planner()
     
-    # 하단 네비게이션 바
-    # 내비게이션 버튼들 (시작하기 탭에서는 숨김)
-    if st.session_state.current_step > 0:
-        col1, col2, col3 = st.columns([1, 2, 1])
-        
-        with col1:
-            if st.session_state.current_step > 0:
-                if st.button("⬅️ 이전 단계", use_container_width=True):
-                    st.session_state.current_step -= 1
-                    st.rerun()
-        
-        with col2:
-            step_names = ["🎯 시작하기", "👥 투자상담매니저", "🎯 투자성향분석결과", "📊 시장전략가", "💰 자산배분전문가", "🔍 산업리서처", "📈 종목분석가", "🏆 포트폴리오전략가", "⚡ 매매전략가"]
-            st.markdown(f"**{step_names[st.session_state.current_step]} ({st.session_state.current_step + 1}/9)**")
-        
-        with col3:
-            if st.session_state.current_step < 8:
-                if st.button("다음 단계 ➡️", use_container_width=True):
-                    st.session_state.current_step += 1
-                    st.rerun()
+
 
 def tab_consultant():
     """투자상담매니저 탭"""
