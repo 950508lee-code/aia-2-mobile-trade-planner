@@ -52,16 +52,18 @@ def main():
     elif st.session_state.current_step == 1:
         tab_consultant()
     elif st.session_state.current_step == 2:
-        tab_macro()
+        tab_profile_analysis()
     elif st.session_state.current_step == 3:
-        tab_allocation()
+        tab_macro()
     elif st.session_state.current_step == 4:
-        tab_sector()
+        tab_allocation()
     elif st.session_state.current_step == 5:
-        tab_analyst()
+        tab_sector()
     elif st.session_state.current_step == 6:
-        tab_cio()
+        tab_analyst()
     elif st.session_state.current_step == 7:
+        tab_cio()
+    elif st.session_state.current_step == 8:
         tab_trade_planner()
     
     # 하단 네비게이션 바
@@ -75,11 +77,11 @@ def main():
                 st.rerun()
     
     with col2:
-        step_names = ["🎯 시작하기", "👥 투자상담매니저", "📊 시장전략가", "💰 자산배분전문가", "🔍 산업리서처", "📈 종목분석가", "🏆 포트폴리오전략가", "⚡ 매매전략가"]
-        st.markdown(f"**{step_names[st.session_state.current_step]} ({st.session_state.current_step + 1}/8)**")
+        step_names = ["🎯 시작하기", "👥 투자상담매니저", "🎯 투자성향분석결과", "📊 시장전략가", "💰 자산배분전문가", "🔍 산업리서처", "📈 종목분석가", "🏆 포트폴리오전략가", "⚡ 매매전략가"]
+        st.markdown(f"**{step_names[st.session_state.current_step]} ({st.session_state.current_step + 1}/9)**")
     
     with col3:
-        if st.session_state.current_step < 7:
+        if st.session_state.current_step < 8:
             if st.button("다음 단계 ➡️", use_container_width=True):
                 st.session_state.current_step += 1
                 st.rerun()
@@ -88,19 +90,6 @@ def tab_consultant():
     """투자상담매니저 탭"""
     st.header("👥 투자상담매니저")
     st.markdown("**맞춤형 투자 전략을 위한 투자자 프로필 분석**")
-    
-    # 상담 진행 상태
-    with st.expander("💼 투자 상담 진행 과정", expanded=True):
-        st.markdown("""
-        **🎯 상담 목표**: 투자자의 성향과 목표를 정확히 파악하여 최적의 투자 전략 수립
-        
-        **📋 상담 단계**:
-        1. 투자 가용 자금 확인
-        2. 투자 성향 및 리스크 허용도 분석  
-        3. 선호 투자 시장 및 자산 파악
-        4. 투자 목표 및 기간 설정
-        5. 맞춤형 투자 전략 방향 제시
-        """)
     
     # 투자자 기본 정보
     st.markdown("### 💰 투자 가용 자금")
@@ -111,14 +100,16 @@ def tab_consultant():
             "총 투자 가능 자산", 
             ["1천만원 미만", "1천만원 - 3천만원", "3천만원 - 5천만원", 
              "5천만원 - 1억원", "1억원 - 3억원", "3억원 이상"],
-            index=2
+            index=2,
+            key="investment_amount"
         )
         
         monthly_saving = st.selectbox(
             "월 추가 투자 가능 금액",
             ["없음", "50만원 미만", "50만원 - 100만원", 
              "100만원 - 200만원", "200만원 - 500만원", "500만원 이상"],
-            index=2
+            index=2,
+            key="monthly_saving"
         )
     
     with col2:
@@ -126,14 +117,16 @@ def tab_consultant():
             "비상 자금 준비 상태",
             ["없음", "생활비 3개월분", "생활비 6개월분", 
              "생활비 12개월분", "생활비 24개월분 이상"],
-            index=2
+            index=2,
+            key="emergency_fund"
         )
         
         debt_status = st.selectbox(
             "부채 상황",
             ["없음", "소액 (연소득 10% 미만)", "보통 (연소득 10-30%)", 
              "많음 (연소득 30-50%)", "과다 (연소득 50% 이상)"],
-            index=1
+            index=1,
+            key="debt_status"
         )
     
     # 투자 성향 분석
@@ -149,7 +142,8 @@ def tab_consultant():
              "중립적 (10-15% 손실 허용)", 
              "적극적 (20-30% 손실 허용)",
              "공격적 (30% 이상 손실도 감수)"],
-            index=2
+            index=2,
+            key="risk_tolerance"
         )
         
         investment_knowledge = st.selectbox(
@@ -157,7 +151,8 @@ def tab_consultant():
             ["초보자 (예적금만 경험)", "초급자 (펀드 투자 경험)", 
              "중급자 (주식 직접 투자)", "고급자 (파생상품 경험)", 
              "전문가 (포트폴리오 운용)"],
-            index=1
+            index=1,
+            key="investment_knowledge"
         )
     
     with col2:
@@ -165,14 +160,16 @@ def tab_consultant():
             "투자 예상 기간",
             ["6개월 이하", "6개월 - 1년", "1년 - 3년", 
              "3년 - 5년", "5년 - 10년", "10년 이상"],
-            index=3
+            index=3,
+            key="investment_period"
         )
         
         investment_goal = st.selectbox(
             "주요 투자 목적",
             ["안전한 자산 보전", "인플레이션 대응", "목돈 마련 (결혼, 주택)",
              "자녀 교육비", "노후 준비", "경제적 자유 달성"],
-            index=2
+            index=2,
+            key="investment_goal"
         )
     
     # 선호 투자 시장
@@ -187,14 +184,16 @@ def tab_consultant():
              "선진국 주식 (유럽, 일본)", "신흥국 주식", 
              "국내 채권", "해외 채권", "원자재 (금, 원유)", 
              "부동산 (REITs)", "암호화폐"],
-            default=["국내 주식 (KOSPI, KOSDAQ)", "미국 주식 (S&P500, NASDAQ)"]
+            default=["국내 주식 (KOSPI, KOSDAQ)", "미국 주식 (S&P500, NASDAQ)"],
+            key="preferred_market"
         )
         
         sector_preference = st.multiselect(
             "관심 있는 투자 섹터",
             ["IT/반도체", "바이오/헬스케어", "금융", "에너지/화학",
              "소비재", "자동차", "건설/부동산", "통신", "배터리/ESG"],
-            default=["IT/반도체", "바이오/헬스케어"]
+            default=["IT/반도체", "바이오/헬스케어"],
+            key="sector_preference"
         )
     
     with col2:
@@ -202,72 +201,29 @@ def tab_consultant():
             "선호하는 투자 스타일",
             ["장기 보유 (Buy & Hold)", "정기 적립 투자 (DCA)", 
              "시장 타이밍 투자", "단기 트레이딩", "혼합 스타일"],
-            index=1
+            index=1,
+            key="trading_style"
         )
         
         monitoring_frequency = st.selectbox(
             "포트폴리오 점검 빈도",
             ["매일", "주 1회", "월 1회", "분기별", "반기별", "연 1회"],
-            index=2
+            index=2,
+            key="monitoring_frequency"
         )
     
-    # 투자 성향 분석 결과
-    st.markdown("### 🎯 투자자 프로필 분석 결과")
+    # 프로필 작성 완료 버튼
+    st.markdown("---")
+    st.markdown("### � 다음 단계로")
     
-    # 간단한 점수 계산 로직
-    risk_scores = {"매우 보수적": 1, "보수적": 2, "중립적": 3, "적극적": 4, "공격적": 5}
-    knowledge_scores = {"초보자": 1, "초급자": 2, "중급자": 3, "고급자": 4, "전문가": 5}
-    period_scores = {"6개월 이하": 1, "6개월 - 1년": 2, "1년 - 3년": 3, 
-                    "3년 - 5년": 4, "5년 - 10년": 5, "10년 이상": 6}
-    
-    total_score = (risk_scores.get(risk_tolerance, 3) + 
-                  knowledge_scores.get(investment_knowledge, 2) + 
-                  period_scores.get(investment_period, 3)) / 3
-    
-    if total_score <= 2:
-        profile_type = "안전 추구형"
-        profile_color = "🔵"
-        recommended_allocation = {"주식": 30, "채권": 60, "현금": 10}
-    elif total_score <= 3.5:
-        profile_type = "균형 추구형"
-        profile_color = "🟡"
-        recommended_allocation = {"주식": 60, "채권": 30, "현금": 10}
-    else:
-        profile_type = "성장 추구형"
-        profile_color = "🔴"
-        recommended_allocation = {"주식": 80, "채권": 15, "현금": 5}
-    
-    col1, col2, col3 = st.columns(3)
-    
-    with col1:
-        st.metric("투자자 유형", f"{profile_color} {profile_type}")
-        st.write(f"**위험 허용도**: {risk_tolerance}")
-        st.write(f"**투자 지식**: {investment_knowledge}")
-    
+    col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        st.metric("투자 기간", investment_period)
-        st.write(f"**투자 목적**: {investment_goal}")
-        st.write(f"**투자 스타일**: {trading_style}")
-    
-    with col3:
-        st.metric("종합 점수", f"{total_score:.1f}/5.0")
-        st.write(f"**선호 시장**: {len(preferred_market)}개 시장")
-        st.write(f"**관심 섹터**: {len(sector_preference)}개 섹터")
-    
-    # 추천 자산 배분
-    st.markdown("### 📊 맞춤형 자산 배분 제안")
-    
-    fig = go.Figure(data=[go.Pie(
-        labels=list(recommended_allocation.keys()),
-        values=list(recommended_allocation.values()),
-        hole=0.4,
-        marker_colors=['#FF6B6B', '#4ECDC4', '#45B7D1']
-    )])
-    fig.update_layout(
-        title=f"{profile_type} 추천 자산 배분",
-        height=400
-    )
-    st.plotly_chart(fig)
+        if st.button("✅ 프로필 작성 완료 - 시장전략가로", type="primary", use_container_width=True):
+            # 다음 단계(시장전략가)로 이동
+            st.session_state.current_step = 2
+            st.success("📊 시장전략가가 투자자 프로필을 분석합니다!")
+            st.balloons()
+            st.rerun()
     
     # 다음 단계 안내
     st.markdown("### 🚀 다음 단계")
@@ -282,31 +238,109 @@ def tab_consultant():
     with col2:
         if st.button("🔄 프로필 다시 설정"):
             st.rerun()
+
+def tab_profile_analysis():
+    """투자성향분석결과 탭"""
+    st.header("🎯 투자성향분석결과")
+    st.markdown("**투자상담매니저 분석 기반 맞춤형 투자 전략 제안**")
     
-    # 상담 요약
-    with st.expander("📋 투자 상담 요약", expanded=False):
-        st.markdown(f"""
-        **👤 투자자 정보**
-        - 투자 가능 자산: {investment_amount}
-        - 월 추가 투자: {monthly_saving}
-        - 비상 자금: {emergency_fund}
+    # 투자자 프로필 분석 결과 (투자상담매니저 결과 활용)
+    if 'risk_tolerance' in st.session_state:
+        # 세션에서 데이터 가져오기
+        risk_tolerance = st.session_state.get('risk_tolerance', '중립적 (10-15% 손실 허용)')
+        investment_priority = st.session_state.get('investment_priority', '안정적 수익')
+        investment_period = st.session_state.get('investment_period', '3년 - 5년')
+        investment_goal = st.session_state.get('investment_goal', '목돈 마련 (결혼, 주택)')
+        ai_involvement = st.session_state.get('ai_involvement', '적극적 개입 (구체적 종목까지 추천)')
+        investment_amount = st.session_state.get('investment_amount', '3천만원 - 5천만원')
+        monthly_saving = st.session_state.get('monthly_saving', '50만원 - 100만원')
         
-        **🎯 투자 성향**
-        - 유형: {profile_color} {profile_type}
-        - 위험 허용도: {risk_tolerance}
-        - 투자 기간: {investment_period}
-        - 투자 목적: {investment_goal}
+        # 점수 계산 로직
+        risk_scores = {"매우 보수적": 1, "보수적": 2, "중립적": 3, "적극적": 4, "공격적": 5}
+        priority_scores = {"원금 보전": 1, "안정적 수익": 2, "높은 수익": 4, "트렌드/패러다임 선도": 5}
+        period_scores = {"6개월 이하": 1, "6개월 - 1년": 2, "1년 - 3년": 3, 
+                        "3년 - 5년": 4, "5년 - 10년": 5, "10년 이상": 6}
         
-        **🌍 투자 선호**
-        - 선호 시장: {', '.join(preferred_market)}
-        - 관심 섹터: {', '.join(sector_preference)}
-        - 투자 스타일: {trading_style}
+        # 위험허용도에서 텍스트 추출
+        risk_key = risk_tolerance.split('(')[0].strip() if '(' in risk_tolerance else risk_tolerance
+        total_score = (risk_scores.get(risk_key, 3) + 
+                      priority_scores.get(investment_priority, 2) + 
+                      period_scores.get(investment_period, 3)) / 3
         
-        **💡 추천 방향**
-        - 주식 비중: {recommended_allocation['주식']}%
-        - 채권 비중: {recommended_allocation['채권']}%
-        - 현금 비중: {recommended_allocation['현금']}%
-        """)
+        if total_score <= 2:
+            profile_type = "안전 추구형"
+            profile_color = "🔵"
+            recommended_allocation = {"주식": 30, "채권": 60, "현금": 10}
+        elif total_score <= 3.5:
+            profile_type = "균형 추구형"
+            profile_color = "🟡"
+            recommended_allocation = {"주식": 60, "채권": 30, "현금": 10}
+        else:
+            profile_type = "성장 추구형"
+            profile_color = "🔴"
+            recommended_allocation = {"주식": 80, "채권": 15, "현금": 5}
+        
+        st.markdown("### 📊 투자자 프로필 종합 분석")
+        
+        col1, col2, col3 = st.columns(3)
+        
+        with col1:
+            st.metric("투자자 유형", f"{profile_color} {profile_type}")
+            st.write(f"**위험 허용도**: {risk_tolerance}")
+            st.write(f"**투자 우선순위**: {investment_priority}")
+        
+        with col2:
+            st.metric("투자 기간", investment_period)
+            st.write(f"**투자 목표**: {investment_goal}")
+            st.write(f"**AI 개입 수준**: {ai_involvement}")
+        
+        with col3:
+            st.metric("종합 점수", f"{total_score:.1f}/5.0")
+            st.write(f"**투자 가용 금액**: {investment_amount}")
+            st.write(f"**월 추가 투자**: {monthly_saving}")
+        
+        # 추천 자산 배분
+        st.markdown("### 📊 맞춤형 자산 배분 제안")
+        
+        fig = go.Figure(data=[go.Pie(
+            labels=list(recommended_allocation.keys()),
+            values=list(recommended_allocation.values()),
+            hole=0.4,
+            marker_colors=['#FF6B6B', '#4ECDC4', '#45B7D1']
+        )])
+        fig.update_layout(
+            title=f"{profile_type} 추천 자산 배분",
+            height=300
+        )
+        st.plotly_chart(fig, use_container_width=True)
+        
+        # AI 개입 수준별 맞춤 전략
+        st.markdown("### 🤖 AI 전략 맞춤 제안")
+        if "최소 개입" in ai_involvement:
+            st.info("**최소 개입 전략**: 기본적인 자산 배분 가이드라인과 시장 동향 정보만 제공합니다.")
+        elif "적당한 개입" in ai_involvement:
+            st.info("**적당한 개입 전략**: 추천 자산 배분과 섹터별 투자 비중을 제시합니다.")
+        elif "적극적 개입" in ai_involvement:
+            st.success("**적극적 개입 전략**: 구체적인 종목 추천과 매매 타이밍까지 제안합니다.")
+        else:
+            st.error("**완전 위임 전략**: AI가 모든 투자 결정을 대신 수행합니다.")
+        
+        st.markdown("---")
+        
+        # 다음 단계로 이동 버튼
+        st.markdown("### 🚀 다음 단계로")
+        col1, col2, col3 = st.columns([1, 2, 1])
+        with col2:
+            if st.button("📊 시장전략가 분석 시작", type="primary", use_container_width=True):
+                st.session_state.current_step = 3
+                st.success("📊 시장전략가가 거시경제 환경을 분석합니다!")
+                st.balloons()
+                st.rerun()
+    else:
+        st.warning("⚠️ 투자상담매니저에서 프로필을 먼저 작성해주세요.")
+        if st.button("👥 투자상담매니저로 돌아가기"):
+            st.session_state.current_step = 1
+            st.rerun()
 
 def tab_intro():
     """인트로 탭"""
