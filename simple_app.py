@@ -61,8 +61,16 @@ def main():
     # 구분선 - 로고 바로 아래
     st.markdown("<hr style='margin: 5px 0 5px 0; border: 1px solid #e0e0e0;'>", unsafe_allow_html=True)
     
-    # 2줄로 배치된 탭 메뉴 (5+4 구성)
-    tab_names = ["🎯 시작하기", "👥 투자상담매니저", "🎯 투자성향분석결과", "📊 시장전략가", "💰 자산배분전문가", "🔍 산업리서처", "📈 종목분석가", "🏆 포트폴리오전략가", "⚡매매전략가"]
+    # 시작하기 버튼 (현재 탭이 시작하기가 아닐 때만 표시)
+    if st.session_state.current_step != 0:
+        col1, col2, col3 = st.columns([1, 1, 1])
+        with col1:
+            if st.button("🎯 시작하기", key="home_tab", use_container_width=True, type="secondary"):
+                st.session_state.current_step = 0
+                st.rerun()
+    
+    # 2줄로 배치된 탭 메뉴 (시작하기 제외, 4+4 구성)
+    tab_names = ["👥 투자상담매니저", "🎯 투자성향분석결과", "📊 시장전략가", "💰 자산배분전문가", "🔍 산업리서처", "📈 종목분석가", "🏆 포트폴리오전략가", "⚡매매전략가"]
     
     # CSS 스타일
     st.markdown("""
@@ -101,29 +109,27 @@ def main():
     </style>
     """, unsafe_allow_html=True)
     
-    # 첫 번째 줄 (5개)
-    cols1 = st.columns(5)
-    for i in range(5):
+    # 첫 번째 줄 (4개)
+    cols1 = st.columns(4)
+    for i in range(4):
         with cols1[i]:
-            button_type = "primary" if i == st.session_state.current_step else "secondary"
-            if st.button(tab_names[i], key=f"tab_{i}", use_container_width=True, type=button_type):
-                st.session_state.current_step = i
+            # 실제 탭 인덱스는 i+1 (시작하기=0 제외)
+            tab_index = i + 1
+            button_type = "primary" if tab_index == st.session_state.current_step else "secondary"
+            if st.button(tab_names[i], key=f"tab_{tab_index}", use_container_width=True, type=button_type):
+                st.session_state.current_step = tab_index
                 st.rerun()
     
-    # 두 번째 줄 (4개 + 빈 공간) - 위아래 간격 최소화
-    st.markdown("<div style='margin: -10px 0 -5px 0;'>", unsafe_allow_html=True)
-    cols2 = st.columns(5)
+    # 두 번째 줄 (4개)
+    cols2 = st.columns(4)
     for i in range(4):
+        # 실제 탭 인덱스는 i+5 (시작하기=0 제외)
         tab_index = i + 5
         with cols2[i]:
             button_type = "primary" if tab_index == st.session_state.current_step else "secondary"
-            if st.button(tab_names[tab_index], key=f"tab_{tab_index}", use_container_width=True, type=button_type):
+            if st.button(tab_names[i+4], key=f"tab_{tab_index}", use_container_width=True, type=button_type):
                 st.session_state.current_step = tab_index
                 st.rerun()
-    # 마지막 컬럼은 비워둠
-    st.markdown("</div>", unsafe_allow_html=True)
-    
-    st.markdown("<div style='margin-bottom: 15px;'></div>", unsafe_allow_html=True)
     
     st.markdown("<br>", unsafe_allow_html=True)
     
@@ -435,8 +441,8 @@ def tab_intro():
     with col2:
         st.markdown("""
         <div style="text-align: center; padding: 20px;">
-            <h3 style="color: #667eea; margin-bottom: 15px;">🚀 당신만의 투자 전략을 찾아보세요</h3>
-            <p style="color: #666; margin-bottom: 20px;">7명의 AI 전문가가 최적의 투자 솔루션을 제안합니다</p>
+            <h3 style="color: #667eea; margin-bottom: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">🚀 당신만의 투자 전략을 찾아보세요</h3>
+            <p style="color: #666; margin-bottom: 20px; white-space: nowrap;">7명의 AI 전문가가 최적의 투자 솔루션을 제안합니다</p>
         </div>
         """, unsafe_allow_html=True)
         
