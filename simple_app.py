@@ -379,39 +379,12 @@ def main():
     </style>
     """, unsafe_allow_html=True)
     
-    # 시작하기 버튼 (다른 탭에서만 표시)
-    if st.session_state.current_step != 0:
-        home_col1, home_col2, home_col3 = st.columns([1, 2, 1])
-        with home_col2:
-            if st.button("🎯 시작하기", key="home_tab", use_container_width=True, type="secondary"):
-                st.session_state.current_step = 0
-                st.rerun()
-        st.markdown("<div style='margin: 5px 0;'></div>", unsafe_allow_html=True)
+    st.markdown("<div style='margin: 5px 0;'></div>", unsafe_allow_html=True)
     
-    # 탭 메뉴 (시작하기 3단계 + 실제 분석 5단계)
+    # 탭 네비게이션 완전 제거
     tab_names = ["🏠 AI 소개", "� 프로세스", "🎯 시작하기", "👥 투자상담매니저", "📊 시장전략가", "💰 자산배분전문가", "🔍 산업리서처", "📈 종목분석가"]
     
-    # 첫 번째 줄 (4개) - 시작하기 3단계 + 투자상담매니저
-    cols1 = st.columns(4)
-    for i in range(4):
-        with cols1[i]:
-            tab_index = i
-            button_type = "primary" if tab_index == st.session_state.current_step else "secondary"
-            if st.button(tab_names[i], key=f"tab_{tab_index}", use_container_width=True, type=button_type):
-                st.session_state.current_step = tab_index
-                st.rerun()
-    
-    # 두 번째 줄 (4개) - 나머지 분석 단계들
-    cols2 = st.columns(4)
-    for i in range(4):
-        with cols2[i]:
-            tab_index = i + 4
-            button_type = "primary" if tab_index == st.session_state.current_step else "secondary"
-            if st.button(tab_names[i+4], key=f"tab_{tab_index}", use_container_width=True, type=button_type):
-                st.session_state.current_step = tab_index
-                st.rerun()
-    
-    st.markdown("<br>", unsafe_allow_html=True)
+    # 상단 탭 네비게이션 제거 - 깔끔한 선형 진행
     
     # 단계별 렌더링 (8단계로 단순화)
     if st.session_state.current_step == 0:
@@ -1339,8 +1312,8 @@ def tab_intro():
     st.markdown("<br><br>", unsafe_allow_html=True)
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        if st.button("📋 투자 프로세스 보기", type="primary", use_container_width=True):
-            st.session_state.current_step = 1
+        if st.button("🎯 시작하기", type="primary", use_container_width=True):
+            st.session_state.current_step = 3  # 투자상담매니저로 바로 이동
             st.balloons()
             st.rerun()
 
