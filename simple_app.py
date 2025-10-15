@@ -39,11 +39,11 @@ def main():
     """메인 애플리케이션"""
     
     # 상단 제목
-    st.title("📊 딥시그널 (AI Investment Agency)")
+    st.title("🤖 딥시그널 (AI Investment Agency)")
     st.markdown("**AI 역할 기반 투자 의사결정 플랫폼**")
     
     # 탭 네비게이션
-    tab_names = ["🎯 인트로", "� 투자상담매니저", "�📊 거시전략가", "💰 자산배분가", "🔍 섹터리서처", "📈 종목애널리스트", "🏆 CIO전략실", "⚡ Trade Planner"]
+    tab_names = ["🎯 인트로", "👥 투자상담매니저", "� 거시전략가", "💰 자산배분가", "🔍 섹터리서처", "📈 종목애널리스트", "🏆 CIO전략실", "⚡ Trade Planner"]
     tabs = st.tabs(tab_names)
     
     with tabs[0]:
@@ -289,7 +289,6 @@ def tab_consultant():
 
 def tab_intro():
     """인트로 탭"""
-    st.header("🎯 딥시그널 — AI 투자 에이전시")
     
     # 메인 비전
     st.markdown("""
@@ -301,7 +300,41 @@ def tab_intro():
     
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # 프로세스 플로우
+    # 8명 AI 전문가 소개
+    st.markdown("### 🤖 **8명의 AI 투자 전문가**")
+    
+    ai_experts = [
+        ("👥", "투자상담매니저", "투자자 성향 분석 및 맞춤형 프로필 설정", "#4CAF50"),
+        ("📊", "거시전략가", "글로벌 경제 환경 분석 및 시장 전망", "#2196F3"),
+        ("💰", "자산배분가", "리스크 성향별 포트폴리오 최적화", "#FF9800"),
+        ("🔍", "섹터리서처", "산업별 투자기회 발굴 및 성장동력 분석", "#9C27B0"),
+        ("📈", "종목애널리스트", "개별 종목 심층분석 및 투자가치 평가", "#E91E63"),
+        ("🏆", "CIO전략실", "최종 포트폴리오 확정 및 리스크 관리", "#795548"),
+        ("⚡", "트레이드 플래너", "모멘텀+RSI 기반 매매 타이밍 최적화", "#607D8B")
+    ]
+    
+    # 2x4 그리드로 배치 (7명이므로 마지막은 빈 공간)
+    for row in range(2):
+        cols = st.columns(4)
+        for col in range(4):
+            idx = row * 4 + col
+            if idx < len(ai_experts):
+                icon, title, desc, color = ai_experts[idx]
+                with cols[col]:
+                    st.markdown(f"""
+                    <div style="text-align: center; padding: 15px; background: {color}15; border: 2px solid {color}; border-radius: 10px; height: 130px; display: flex; flex-direction: column; justify-content: center; margin: 5px;">
+                        <div style="font-size: 28px; margin-bottom: 8px;">{icon}</div>
+                        <div style="font-weight: bold; color: {color}; font-size: 13px; margin-bottom: 5px;">{title}</div>
+                        <div style="font-size: 10px; color: #666; line-height: 1.3;">{desc}</div>
+                    </div>
+                    """, unsafe_allow_html=True)
+            else:
+                with cols[col]:
+                    st.empty()
+    
+    st.markdown("<br>", unsafe_allow_html=True)
+    
+    # 프로세스 플로우 (화살표 제거)
     st.markdown("### 🔄 **투자 의사결정 프로세스**")
     
     process_steps = [
@@ -314,6 +347,7 @@ def tab_intro():
         ("⚡", "실행 계획", "매매 타이밍 설정")
     ]
     
+    # 화살표 없이 단순하게 배치
     cols = st.columns(7)
     for i, (icon, title, desc) in enumerate(process_steps):
         with cols[i]:
@@ -324,9 +358,6 @@ def tab_intro():
                 <div style="font-size: 10px; color: #666;">{desc}</div>
             </div>
             """, unsafe_allow_html=True)
-        
-        if i < len(process_steps) - 1:
-            st.markdown("<div style='text-align: center; margin: 10px 0;'>→</div>", unsafe_allow_html=True)
     
     st.markdown("<br><br>", unsafe_allow_html=True)
     
@@ -342,7 +373,17 @@ def tab_intro():
         
         if st.button("🎯 AI 투자 여정 시작하기", type="primary", use_container_width=True):
             st.success("✅ 투자상담매니저로 이동합니다!")
-            st.info("👆 위의 **👥 투자상담매니저** 탭을 클릭해주세요!")
+            # HTML로 탭 전환
+            st.markdown("""
+            <script>
+            setTimeout(function() {
+                var tabs = parent.document.querySelectorAll('[data-testid="stTabs"] button');
+                if (tabs.length > 1) {
+                    tabs[1].click();
+                }
+            }, 300);
+            </script>
+            """, unsafe_allow_html=True)
             st.balloons()
 
 def tab_macro():
