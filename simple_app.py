@@ -42,12 +42,12 @@ def main():
     if 'current_step' not in st.session_state:
         st.session_state.current_step = 0
     
-    # 상단 로고 - 텍스트만 간단하게
+    # 상단 로고 - 헤더처럼 바짝 붙임
     st.markdown("""
     <div style="
         text-align: left;
-        margin-bottom: 15px;
-        padding: 5px 0;
+        margin: 0;
+        padding: 0;
     ">
         <h1 style="
             color: #2c3e50;
@@ -58,8 +58,8 @@ def main():
     </div>
     """, unsafe_allow_html=True)
     
-    # 구분선
-    st.markdown("<hr style='margin: 30px 0; border: 1px solid #e0e0e0;'>", unsafe_allow_html=True)
+    # 구분선 - 로고 바로 아래
+    st.markdown("<hr style='margin: 5px 0 20px 0; border: 1px solid #e0e0e0;'>", unsafe_allow_html=True)
     
     # 단계별 렌더링
     if st.session_state.current_step == 0:
