@@ -290,13 +290,6 @@ def step_ai_intro():
                     """, unsafe_allow_html=True)
     
     st.markdown("---")
-    
-    # 시작하기 버튼 (1단계로 이동)
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
-        if st.button("🎯 시작하기", use_container_width=True, type="primary"):
-            st.session_state.current_step = 1  # 투자상담매니저로 바로 이동
-            st.rerun()
 
 def step_consultant():
     """투자상담매니저"""
@@ -377,20 +370,19 @@ def step_consultant():
         key="ai_strategy"
     )
     
-    # 분석 결과 저장
-    if st.button("📊 투자성향 분석 완료", use_container_width=True, type="primary"):
-        st.session_state.user_profile = {
-            'experience': investment_experience,
-            'target_return': target_return,
-            'risk_tolerance': risk_tolerance,
-            'investment_style': investment_style,
-            'investment_period': investment_period,
-            'investment_purpose': investment_purpose,
-            'ai_strategy': ai_strategy
-        }
-        
-        st.success("✅ 투자성향 분석이 완료되었습니다!")
-        st.info("💡 다음 단계에서 시장전략가가 현재 시장 상황을 분석해드립니다.")
+    # 분석 결과 자동 저장
+    st.session_state.user_profile = {
+        'experience': investment_experience,
+        'target_return': target_return,
+        'risk_tolerance': risk_tolerance,
+        'investment_style': investment_style,
+        'investment_period': investment_period,
+        'investment_purpose': investment_purpose,
+        'ai_strategy': ai_strategy
+    }
+    
+    st.success("✅ 투자성향 분석이 완료되었습니다!")
+    st.info("💡 다음 단계에서 시장전략가가 현재 시장 상황을 분석해드립니다.")
 
 def step_market_analyst():
     """5단계: 시장전략가"""
