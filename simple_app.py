@@ -42,30 +42,34 @@ def main():
     if 'current_step' not in st.session_state:
         st.session_state.current_step = 0
     
-    # 상단 제목 - 검은색 계열 배경에 흰색 글씨
+    # 상단 로고 - 왼쪽 상단에 작게 배치
     st.markdown("""
     <div style="
         background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-        padding: 25px;
-        border-radius: 15px;
-        text-align: center;
-        margin-bottom: 30px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        border: 2px solid rgba(255,255,255,0.1);
+        padding: 12px 20px;
+        border-radius: 8px;
+        text-align: left;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        border: 1px solid rgba(255,255,255,0.1);
+        display: inline-block;
+        width: auto;
+        max-width: 320px;
     ">
         <h1 style="
             color: white;
             margin: 0;
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        ">🤖 딥시그널 (AI Investment Agency)</h1>
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            white-space: nowrap;
+        ">🤖 딥시그널</h1>
         <p style="
-            color: rgba(255,255,255,0.9);
-            margin: 10px 0 0 0;
-            font-size: 1.2rem;
-            font-weight: 500;
-        ">AI 역할 기반 투자 의사결정 플랫폼</p>
+            color: rgba(255,255,255,0.85);
+            margin: 2px 0 0 0;
+            font-size: 0.8rem;
+            font-weight: 400;
+        ">AI Investment Agency</p>
     </div>
     """, unsafe_allow_html=True)
     
