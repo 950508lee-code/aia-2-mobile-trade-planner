@@ -322,32 +322,11 @@ def tab_profile_analysis():
 def tab_intro():
     """인트로 탭"""
     
-    # 메인 비전 - 헤더와 구별되는 스타일
+    # 메인 비전
     st.markdown("""
-    <div style="
-        background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
-        padding: 30px;
-        border-radius: 20px;
-        text-align: center;
-        margin: 20px 0;
-        border: 3px solid #fff;
-        box-shadow: 0 8px 25px rgba(240, 147, 251, 0.3);
-    ">
-        <h2 style="
-            color: white;
-            margin: 0;
-            font-size: 1.8rem;
-            font-weight: 600;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
-            margin-bottom: 15px;
-        ">🤖 8명의 투자전문 AI와 함께하는 단계별 의사결정</h2>
-        <p style="
-            color: rgba(255,255,255,0.95);
-            margin: 0;
-            font-size: 1.1rem;
-            font-weight: 400;
-            line-height: 1.6;
-        ">각 분야 전문가 AI가 순차적으로 분석하여 최적의 투자 전략을 도출합니다</p>
+    <div style="text-align: center; padding: 20px; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); border-radius: 10px; color: white; margin: 20px 0;">
+        <h2>🤖 8명의 투자전문 AI와 함께하는 단계별 의사결정</h2>
+        <p style="font-size: 18px; margin: 10px 0;">각 분야 전문가 AI가 순차적으로 분석하여 최적의 투자 전략을 도출합니다</p>
     </div>
     """, unsafe_allow_html=True)
     
