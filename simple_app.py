@@ -82,24 +82,25 @@ def main():
         tab_trade_planner()
     
     # 하단 네비게이션 바
-    st.markdown("---")
-    col1, col2, col3 = st.columns([1, 2, 1])
-    
-    with col1:
-        if st.session_state.current_step > 0:
-            if st.button("⬅️ 이전 단계", use_container_width=True):
-                st.session_state.current_step -= 1
-                st.rerun()
-    
-    with col2:
-        step_names = ["🎯 시작하기", "👥 투자상담매니저", "🎯 투자성향분석결과", "📊 시장전략가", "💰 자산배분전문가", "🔍 산업리서처", "📈 종목분석가", "🏆 포트폴리오전략가", "⚡ 매매전략가"]
-        st.markdown(f"**{step_names[st.session_state.current_step]} ({st.session_state.current_step + 1}/9)**")
-    
-    with col3:
-        if st.session_state.current_step < 8:
-            if st.button("다음 단계 ➡️", use_container_width=True):
-                st.session_state.current_step += 1
-                st.rerun()
+    # 내비게이션 버튼들 (시작하기 탭에서는 숨김)
+    if st.session_state.current_step > 0:
+        col1, col2, col3 = st.columns([1, 2, 1])
+        
+        with col1:
+            if st.session_state.current_step > 0:
+                if st.button("⬅️ 이전 단계", use_container_width=True):
+                    st.session_state.current_step -= 1
+                    st.rerun()
+        
+        with col2:
+            step_names = ["🎯 시작하기", "👥 투자상담매니저", "🎯 투자성향분석결과", "📊 시장전략가", "💰 자산배분전문가", "🔍 산업리서처", "📈 종목분석가", "🏆 포트폴리오전략가", "⚡ 매매전략가"]
+            st.markdown(f"**{step_names[st.session_state.current_step]} ({st.session_state.current_step + 1}/9)**")
+        
+        with col3:
+            if st.session_state.current_step < 8:
+                if st.button("다음 단계 ➡️", use_container_width=True):
+                    st.session_state.current_step += 1
+                    st.rerun()
 
 def tab_consultant():
     """투자상담매니저 탭"""
